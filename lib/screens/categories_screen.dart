@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../cart/cart.dart';
-import '../components/horizontal_listview.dart';
+import '../components/category_screen.dart';
 import '../components/products.dart';
 
 class Categories extends StatefulWidget {
