@@ -81,12 +81,12 @@ class _ProductsState extends State<Products> {
                                       width: 100,
                                       height: 80,
                                       child: Image.network(
-                                        category['imgUrl'],
+                                        category['color'],
                                         fit: BoxFit.fill,
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.only(
+                                      padding:  EdgeInsets.only(
                                           top: 5, bottom: 5),
                                       child: Text(
                                         category['varient'],
@@ -104,7 +104,7 @@ class _ProductsState extends State<Products> {
                   );
                 }
 
-                return const SizedBox(
+                return SizedBox(
                   height: 100,
                   width: 100,
                   child: Center(
