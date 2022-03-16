@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:smart_gem_mart/screens/signin_screen.dart';
-import 'package:smart_gem_mart/screens/signup_screen.dart';
 import 'package:smart_gem_mart/reusable_widgets/reusable_widget.dart';
 import 'package:smart_gem_mart/utils/color_utils.dart';
 
@@ -40,7 +39,7 @@ class _SplashScreenState extends State<SplashScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               // logo here
-              logoWidget("assets/images/logo1.png"),
+              logoWidget("assets/images/categories/logo1.png"),
               const SizedBox(
                 height: 30,
               ),
