@@ -133,10 +133,10 @@ TextField reusableTextField2(String text, IconData icon, bool isPasswordType,
 
 }
 
-TextField reusableTextField3(String text, IconData icon, bool isPasswordType,
+TextField reusableTextField3(String text, IconData icon, bool isPasswordType, bool readStatus,
     TextEditingController controller) {
   return TextField(
-
+    enabled:readStatus ,
     controller: controller,
     obscureText: isPasswordType,
     enableSuggestions: !isPasswordType,

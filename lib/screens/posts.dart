@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../cart/cart.dart';
-import '../components/horizontal_listview.dart';
+import '../components/category_screen.dart';
 import '../components/products.dart';
+import 'addpost_screen.dart';
 
 class Posts extends StatefulWidget {
   const Posts({Key? key}) : super(key: key);
@@ -49,8 +50,18 @@ class _PostsState extends State<Posts> {
             child: Flexible(child: Products()),
           ),
 
+
         ],
       ),
+      floatingActionButton: FloatingActionButton(
+
+        onPressed: (){
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => AddPostScreen()));
+        },
+        child: Icon(Icons.add),backgroundColor: Colors.deepPurpleAccent,
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 }

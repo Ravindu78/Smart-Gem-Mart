@@ -5,9 +5,11 @@ import 'package:smart_gem_mart/main.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_gem_mart/screens/addpost_screen.dart';
 import 'package:smart_gem_mart/screens/categories_screen.dart';
+import 'package:smart_gem_mart/screens/drawer_screen.dart';
 import 'package:smart_gem_mart/screens/home_screen.dart';
 import 'package:smart_gem_mart/screens/posts.dart';
 import 'package:smart_gem_mart/utils/color_utils.dart';
+//import 'package:smart_gem_mart/screens/';
 
 import '../reusable_widgets/reusable_widget.dart';
 class HomeScreen extends StatefulWidget {
@@ -66,16 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
         elevation: 20,
         titleSpacing: 20,
       ),
-      drawer: Drawer( child: ListView(
-          children: [
-      UserAccountsDrawerHeader(accountName: Text('Ravindu Arsakualsooriya'), accountEmail: Text('ravindup33@gmail.com'),
-        currentAccountPicture: GestureDetector(
-          child: CircleAvatar(
-            backgroundColor: Colors.grey,
-            child: Icon(Icons.person, color: Colors.white,
-            ),
-          ),
-        ),),],),),
+        drawer: mydrawer(),
 
       body: TabBarView(
         children: [
@@ -89,15 +82,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
 
-      floatingActionButton: FloatingActionButton(
 
-        onPressed: (){
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => AddPostScreen()));
-        },
-        child: Icon(Icons.add),backgroundColor: Colors.deepPurpleAccent,
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       /*bottomNavigationBar: BottomNavigationBar(
 
           items: [
@@ -128,3 +113,4 @@ class _HomeScreenState extends State<HomeScreen> {
     ),
   );
 }
+
