@@ -8,12 +8,13 @@ class AddPost {
   String shape;
   String weight;
   String description;
+  String price;
   String email;
   String imgUrl;
   String location;
   String phone;
 
-  AddPost(this.varient,this.color,this.shape,this.weight,this.description,this.email,this.imgUrl,this.location,this.phone);
+  AddPost(this.varient,this.color,this.shape,this.weight,this.description,this.price,this.email,this.imgUrl,this.location,this.phone);
 
   CollectionReference advertisment = FirebaseFirestore.instance.collection('Advertisment');
 
@@ -28,6 +29,7 @@ class AddPost {
       'shape':shape,
       'weight':weight,
       'description':description,
+      'price':price,
       'email':email,
       'imgUrl':imgUrl,
       'location':location,

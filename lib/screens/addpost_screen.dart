@@ -26,6 +26,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
   TextEditingController _imgUrlController = TextEditingController();
   TextEditingController _locationController = TextEditingController();
   TextEditingController _phoneController = TextEditingController();
+  TextEditingController _priceController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -63,31 +64,34 @@ class _AddPostScreenState extends State<AddPostScreen> {
                     ),
                     Row(
                       children: [
-                        Expanded(child: reusableTextField3("Choose The Varient", Icons.lock_outline, false, _varientNameController),),
+                        Expanded(child: reusableTextField3("Choose The Varient", Icons.lock_outline, false, false, _varientNameController),),
                         PopupMenuButton(
+                          onSelected: (value) { setState(() { _varientNameController.text = value.toString(); }); },
                           icon: Icon(Icons.more_vert),
                           itemBuilder: (BuildContext context) => <PopupMenuEntry>[
                             const PopupMenuItem(
+                              value:'Blue Sapphire',
                               child: ListTile(
                                 leading: Icon(Icons.add),
-                                title: Text('Item 1'),
+                                title: Text('Blue Sapphire'),
+
                               ),
                             ),
                             const PopupMenuItem(
+                              value:'Ruby',
                               child: ListTile(
                                 leading: Icon(Icons.anchor),
-                                title: Text('Item 2'),
+                                title: Text('Ruby'),
                               ),
                             ),
                             const PopupMenuItem(
+                              value:'Garnet',
                               child: ListTile(
                                 leading: Icon(Icons.article),
-                                title: Text('Item 3'),
+                                title: Text('Garnet'),
                               ),
                             ),
-                            const PopupMenuDivider(),
-                            const PopupMenuItem(child: Text('Item A')),
-                            const PopupMenuItem(child: Text('Item B')),
+
                           ],
                         ),
 
@@ -99,31 +103,32 @@ class _AddPostScreenState extends State<AddPostScreen> {
                     ),
                     Row(
                       children: [
-                        Expanded(child: reusableTextField3("Choose The Color", Icons.lock_outline, false, _varientColorController)),
+                        Expanded(child: reusableTextField3("Choose The Color", Icons.lock_outline, false, false, _varientColorController),),
                         PopupMenuButton(
+                          onSelected: (value) { setState(() { _varientColorController.text = value.toString(); }); },
                           icon: Icon(Icons.more_vert),
                           itemBuilder: (BuildContext context) => <PopupMenuEntry>[
                             const PopupMenuItem(
+                              value: 'sky blue',
                               child: ListTile(
                                 leading: Icon(Icons.add),
-                                title: Text('Item 1'),
+                                title: Text('sky blue'),
                               ),
                             ),
                             const PopupMenuItem(
+                              value: 'royal blue',
                               child: ListTile(
                                 leading: Icon(Icons.anchor),
-                                title: Text('Item 2'),
+                                title: Text('royal blue'),
                               ),
                             ),
                             const PopupMenuItem(
+                              value: 'thik blue',
                               child: ListTile(
                                 leading: Icon(Icons.article),
-                                title: Text('Item 3'),
+                                title: Text('thik blue'),
                               ),
                             ),
-                            const PopupMenuDivider(),
-                            const PopupMenuItem(child: Text('Item A')),
-                            const PopupMenuItem(child: Text('Item B')),
                           ],
                         ),
 
@@ -134,31 +139,33 @@ class _AddPostScreenState extends State<AddPostScreen> {
                     ),
                     Row(
                       children: [
-                        Expanded(child: reusableTextField3("Choose The Cutting Shape", Icons.lock_outline, false, _cuttingShapeController)),
+                        Expanded(child: reusableTextField3("Choose The Cutting Shape", Icons.lock_outline, false, false, _cuttingShapeController)),
                         PopupMenuButton(
+                          onSelected: (value) { setState(() { _cuttingShapeController.text = value.toString(); }); },
                           icon: Icon(Icons.more_vert),
                           itemBuilder: (BuildContext context) => <PopupMenuEntry>[
                             const PopupMenuItem(
+                              value: 'oval',
                               child: ListTile(
                                 leading: Icon(Icons.add),
-                                title: Text('Item 1'),
+                                title: Text('oval'),
                               ),
                             ),
                             const PopupMenuItem(
+                              value: 'heart',
                               child: ListTile(
                                 leading: Icon(Icons.anchor),
-                                title: Text('Item 2'),
+                                title: Text('heart'),
                               ),
                             ),
                             const PopupMenuItem(
+                              value: 'round',
                               child: ListTile(
                                 leading: Icon(Icons.article),
-                                title: Text('Item 3'),
+                                title: Text('round'),
                               ),
                             ),
-                            const PopupMenuDivider(),
-                            const PopupMenuItem(child: Text('Item A')),
-                            const PopupMenuItem(child: Text('Item B')),
+
                           ],
                         ),
 
@@ -170,7 +177,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
                     ),
                     Row(
                       children: [
-                        Expanded(child: reusableTextField3(" weight", Icons.lock_outline, false, _weightController),),
+                        Expanded(child: reusableTextField3(" weight", Icons.lock_outline, false,true, _weightController),),
                       ],
                     ),
 
@@ -179,7 +186,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
                     ),
                     Row(
                       children: [
-                        Expanded(child: reusableTextField3("more details", Icons.lock_outline, false, _descriptionController),),
+                        Expanded(child: reusableTextField3("more details", Icons.lock_outline, false,true, _descriptionController),),
                       ],
                     ),
                     const SizedBox(
@@ -187,7 +194,15 @@ class _AddPostScreenState extends State<AddPostScreen> {
                     ),
                     Row(
                       children: [
-                        Expanded(child: reusableTextField3("Email", Icons.lock_outline, false,_emailController)),
+                        Expanded(child: reusableTextField3("price", Icons.lock_outline, false,true, _priceController),),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      children: [
+                        Expanded(child: reusableTextField3("Email", Icons.lock_outline, false,true,_emailController)),
                       ],
                     ),
 
@@ -196,7 +211,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
                     ),
                     Row(
                       children: [
-                        Expanded(child: reusableTextField3("image", Icons.lock_outline, false, _imgUrlController),),
+                        Expanded(child: reusableTextField3("image", Icons.lock_outline, false, true,_imgUrlController),),
                       ],
                     ),
                     const SizedBox(
@@ -204,7 +219,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
                     ),
                     Row(
                       children: [
-                        Expanded(child: reusableTextField3("address", Icons.lock_outline, false, _locationController),),
+                        Expanded(child: reusableTextField3("address", Icons.lock_outline, false, true, _locationController),),
                       ],
                     ),
                     const SizedBox(
@@ -212,7 +227,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
                     ),
                     Row(
                       children: [
-                        Expanded(child: reusableTextField3("phone", Icons.lock_outline, false, _phoneController),),
+                        Expanded(child: reusableTextField3("phone", Icons.lock_outline, false,true, _phoneController),),
                       ],
                     ),
                     const SizedBox(
@@ -222,7 +237,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
                        Navigator.push(context,
                             MaterialPageRoute(builder: (context) => HomeScreen()));
                       AddPost(_varientNameController.text,_varientColorController.text,_cuttingShapeController.text,_weightController.text,_descriptionController.text,
-                          _emailController.text,_imgUrlController.text,_locationController.text,_phoneController.text).addPost();
+                          _priceController.text, _emailController.text,_imgUrlController.text,_locationController.text,_phoneController.text).addPost();
                     },
 
                     ),
