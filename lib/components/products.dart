@@ -81,7 +81,7 @@ class _ProductsState extends State<Products> {
                                       width: 100,
                                       height: 80,
                                       child: Image.network(
-                                        category['color'],
+                                        imgurl,
                                         fit: BoxFit.fill,
                                       ),
                                     ),

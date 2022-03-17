@@ -133,9 +133,19 @@ TextField reusableTextField2(String text, IconData icon, bool isPasswordType,
 
 }
 
-TextField reusableTextField3(String text, IconData icon, bool isPasswordType, bool readStatus,
-    TextEditingController controller) {
-  return TextField(
+TextFormField reusableTextField3(String text, IconData icon, bool isPasswordType, bool readStatus,
+    TextEditingController controller, message) {
+  return TextFormField(
+
+    validator: (value)
+    {
+      if(value!.isEmpty)
+        {
+          return message;
+        }
+      return null;
+
+    },
     enabled:readStatus ,
     controller: controller,
     obscureText: isPasswordType,
@@ -148,6 +158,9 @@ TextField reusableTextField3(String text, IconData icon, bool isPasswordType, bo
         icon,
         color: Colors.white70,
       ),
+      errorStyle: TextStyle(
+        color: Colors.white,
+      ),
       labelText: text,
       labelStyle: TextStyle(color: Colors.white.withOpacity(0.9)),
       filled: true,
@@ -157,11 +170,64 @@ TextField reusableTextField3(String text, IconData icon, bool isPasswordType, bo
           borderRadius: BorderRadius.circular(30.0),
           borderSide: const BorderSide(width: 0, style: BorderStyle.none)),
     ),
+
     keyboardType: isPasswordType
         ? TextInputType.visiblePassword
         : TextInputType.emailAddress,
   );
 
 }
+
+
+TextFormField reusableTextField4(String text, IconData icon, bool isPasswordType, bool readStatus,
+    TextEditingController controller, nullmessage,pattern, regexMessage) {
+  return TextFormField(
+
+    validator: (value)
+    {
+      RegExp regExp = new RegExp(pattern);
+      if(value!.isEmpty)
+      {
+        return nullmessage;
+      }
+      else if(!regExp.hasMatch(value))
+      {
+        return regexMessage;
+      }
+      return null;
+
+    },
+    enabled:readStatus ,
+    controller: controller,
+    obscureText: isPasswordType,
+    enableSuggestions: !isPasswordType,
+    autocorrect: !isPasswordType,
+    cursorColor: Colors.white,
+    style: TextStyle(color: Colors.white.withOpacity(0.9)),
+    decoration: InputDecoration(
+      prefixIcon: Icon(
+        icon,
+        color: Colors.white70,
+      ),
+      errorStyle: TextStyle(
+        color: Colors.white,
+      ),
+      labelText: text,
+      labelStyle: TextStyle(color: Colors.white.withOpacity(0.9)),
+      filled: true,
+      floatingLabelBehavior: FloatingLabelBehavior.never,
+      fillColor: Colors.white.withOpacity(0.3),
+      border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(30.0),
+          borderSide: const BorderSide(width: 0, style: BorderStyle.none)),
+    ),
+
+    keyboardType: isPasswordType
+        ? TextInputType.visiblePassword
+        : TextInputType.emailAddress,
+  );
+
+}
+
 
 

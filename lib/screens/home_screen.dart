@@ -20,7 +20,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) => DefaultTabController(
-    length: 4,
+    length: 3,
     child: Scaffold(
       appBar: AppBar(
 
@@ -33,9 +33,15 @@ class _HomeScreenState extends State<HomeScreen> {
        // ),
         actions: [
           IconButton(
-            icon: Icon(Icons.shopping_cart),
+            icon: Icon(Icons.qr_code_scanner),
             onPressed: () {
           Navigator.push(context, MaterialPageRoute(builder: (context) => Cart()));
+            },
+          ),
+          IconButton(
+            icon: Icon(Icons.scanner),
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => Cart()));
             },
           ),
           IconButton(
@@ -62,7 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
             Tab(icon: Icon(Icons.home), text: 'Home'),
             Tab(icon: Icon(Icons.star), text: 'Categories'),
             Tab(icon: Icon(Icons.face), text: 'Profile'),
-            Tab(icon: Icon(Icons.settings), text: 'Settings'),
+
           ],
         ),
         elevation: 20,
@@ -78,7 +84,7 @@ class _HomeScreenState extends State<HomeScreen> {
           Posts(),
           Categories(),
           Posts(),
-          Categories()
+
         ],
       ),
 

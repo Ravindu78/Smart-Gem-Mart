@@ -40,6 +40,7 @@ dependencies:
   image_picker: ^0.8.4+11
   firebase_storage: ^10.2.9
   flutter_form_builder: ^7.1.1
+  file_picker: ^4.5.1
   dependencies:
 
 
@@ -67,13 +68,17 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/images/c1.png
-    - assets/images/blue.png
-    - assets/images/c2.png
-    - assets/images/c3.png
-    - assets/images/c4.png
-    - assets/images/gem.png
-    - assets/images/logo1.png
+    - assets/images/categories/blue.png
+    - assets/images/categories/catseye.png
+    - assets/images/categories/emerald.png
+    - assets/images/categories/garnet.png
+    - assets/images/categories/logo1.png
+    - assets/images/categories/padmaraga.png
+    - assets/images/categories/ruby.png
+    - assets/images/categories/star.png
+    - assets/images/categories/yellow.png
+    - assets/images/categories/c1.png
+
 
 
 
