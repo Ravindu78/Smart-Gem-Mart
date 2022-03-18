@@ -1,15 +1,12 @@
 
 import 'package:smart_gem_mart/cart/cart.dart';
-import 'package:smart_gem_mart/getpost.dart';
-import 'package:smart_gem_mart/main.dart';
+import 'package:smart_gem_mart/screens/knowleadgepanel_screen.dart';
+import 'package:smart_gem_mart/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:smart_gem_mart/screens/addpost_screen.dart';
 import 'package:smart_gem_mart/screens/categories_screen.dart';
-import 'package:smart_gem_mart/screens/drawer_screen.dart';
-import 'package:smart_gem_mart/screens/home_screen.dart';
 import 'package:smart_gem_mart/screens/posts.dart';
 import 'package:smart_gem_mart/utils/color_utils.dart';
-//import 'package:smart_gem_mart/screens/';
+
 
 import '../reusable_widgets/reusable_widget.dart';
 class HomeScreen extends StatefulWidget {
@@ -20,7 +17,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) => DefaultTabController(
-    length: 3,
+    length: 4,
     child: Scaffold(
       appBar: AppBar(
 
@@ -33,15 +30,9 @@ class _HomeScreenState extends State<HomeScreen> {
        // ),
         actions: [
           IconButton(
-            icon: Icon(Icons.qr_code_scanner),
+            icon: Icon(Icons.shopping_cart),
             onPressed: () {
           Navigator.push(context, MaterialPageRoute(builder: (context) => Cart()));
-            },
-          ),
-          IconButton(
-            icon: Icon(Icons.scanner),
-            onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => Cart()));
             },
           ),
           IconButton(
@@ -68,13 +59,102 @@ class _HomeScreenState extends State<HomeScreen> {
             Tab(icon: Icon(Icons.home), text: 'Home'),
             Tab(icon: Icon(Icons.star), text: 'Categories'),
             Tab(icon: Icon(Icons.face), text: 'Profile'),
-
+            Tab(icon: Icon(Icons.book), text: 'Education'),
           ],
         ),
         elevation: 20,
         titleSpacing: 20,
       ),
-        drawer: mydrawer(),
+        drawer: Drawer(
+
+          child: Container(
+            decoration: BoxDecoration(
+                gradient: LinearGradient(colors: [
+                  hexStringToColor("CB2B93"),
+                  hexStringToColor("9546C4"),
+                  hexStringToColor("5E61F4")
+                ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
+            child: ListView(
+              children: [
+                UserAccountsDrawerHeader(accountName: Text('Ravindu Arsakualsooriya'), accountEmail: Text('ravindup33@gmail.com'),
+                  currentAccountPicture: GestureDetector(
+                    child: CircleAvatar(
+                      backgroundColor: Colors.grey,
+                      child: Icon(Icons.person, color: Colors.white,
+                      ),
+                    ),
+                  ),
+
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                  color: Colors.white
+
+                  ),
+                  height: 550,
+                  child: Column(
+                    children: [
+                      InkWell(
+                        onTap: (){},
+                        child: ListTile(
+                          title: Text('Home Page'),
+                          leading: Icon(Icons.home, color: Colors.red,),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: (){},
+                        child: ListTile(
+                          title: Text('My Account'),
+                          leading: Icon(Icons.person, color: Colors.red,),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => new Cart()));
+                        },
+                        child: ListTile(
+                          title: Text('Shopping Cart'),
+                          leading: Icon(Icons.shopping_cart, color: Colors.red,),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: (){},
+                        child: ListTile(
+                          title: Text('Home Page'),
+                          leading: Icon(Icons.home, color: Colors.red,),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: (){},
+                        child: ListTile(
+                          title: Text('Favorite'),
+                          leading: Icon(Icons.favorite, color: Colors.red,),
+                        ),
+                      ),
+                      Divider(),
+                      InkWell(
+                        onTap: (){},
+                        child: ListTile(
+                          title: Text('Settings'),
+                          leading: Icon(Icons.settings, color: Colors.red,),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: (){},
+                        child: ListTile(
+                          title: Text('About'),
+                          leading: Icon(Icons.help, color: Colors.red,),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+
+
+              ],
+            ),
+          ),
+        ),
 
       body: TabBarView(
         children: [
@@ -83,7 +163,8 @@ class _HomeScreenState extends State<HomeScreen> {
           //=====body testing button remove this====
           Posts(),
           Categories(),
-          Posts(),
+          Profile(),
+          Education()
 
         ],
       ),

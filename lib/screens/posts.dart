@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../cart/cart.dart';
-import '../components/category_screen.dart';
+
 import '../components/products.dart';
 import 'addpost_screen.dart';
 
@@ -42,9 +42,9 @@ class _PostsState extends State<Posts> {
           //padding widget
           //horizontal list function  calli
           //recent products
-          Padding(padding: EdgeInsets.all(20.0),
-            child: Text('recent products'),
-          ),
+         // Padding(padding: EdgeInsets.all(20.0),
+         //   child: Text('recent products'),
+         // ),
           Container(
 
             child: Flexible(child: Products()),
@@ -59,7 +59,7 @@ class _PostsState extends State<Posts> {
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => AddPostScreen()));
         },
-        child: Icon(Icons.add),backgroundColor: Colors.deepPurpleAccent,
+        child: Icon(Icons.add),backgroundColor: Colors.purpleAccent,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );

@@ -1,6 +1,7 @@
 
 import 'dart:io';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:smart_gem_mart/reusable_widgets/reusable_widget.dart';
 import 'package:smart_gem_mart/screens/home_screen.dart';
 import 'package:smart_gem_mart/utils/color_utils.dart';
@@ -25,7 +26,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
   TextEditingController _cuttingShapeController = TextEditingController();
   TextEditingController _weightController = TextEditingController();
   TextEditingController _descriptionController = TextEditingController();
-  TextEditingController _emailController = TextEditingController();
+  late String _emailController;
   TextEditingController _imgUrlController = TextEditingController();
   TextEditingController _locationController = TextEditingController();
   TextEditingController _phoneController = TextEditingController();
@@ -34,7 +35,18 @@ class _AddPostScreenState extends State<AddPostScreen> {
   late String imagePath;
   final _formKey = GlobalKey<FormState>();
 
+@override
+void initState() {
+    // TODO: implement initState
+    super.initState();
+    var currentUser = FirebaseAuth.instance.currentUser;
 
+
+    if (currentUser != null) {
+      _emailController=currentUser.email!;
+      print(currentUser.email);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -118,21 +130,21 @@ class _AddPostScreenState extends State<AddPostScreen> {
                               const PopupMenuItem(
                                 value: 'sky blue',
                                 child: ListTile(
-                                  leading: Icon(Icons.add),
+
                                   title: Text('sky blue'),
                                 ),
                               ),
                               const PopupMenuItem(
                                 value: 'royal blue',
                                 child: ListTile(
-                                  leading: Icon(Icons.anchor),
+
                                   title: Text('royal blue'),
                                 ),
                               ),
                               const PopupMenuItem(
                                 value: 'thik blue',
                                 child: ListTile(
-                                  leading: Icon(Icons.article),
+
                                   title: Text('thik blue'),
                                 ),
                               ),
@@ -154,21 +166,21 @@ class _AddPostScreenState extends State<AddPostScreen> {
                               const PopupMenuItem(
                                 value: 'oval',
                                 child: ListTile(
-                                  leading: Icon(Icons.add),
+
                                   title: Text('oval'),
                                 ),
                               ),
                               const PopupMenuItem(
                                 value: 'heart',
                                 child: ListTile(
-                                  leading: Icon(Icons.anchor),
+
                                   title: Text('heart'),
                                 ),
                               ),
                               const PopupMenuItem(
                                 value: 'round',
                                 child: ListTile(
-                                  leading: Icon(Icons.article),
+
                                   title: Text('round'),
                                 ),
                               ),
@@ -255,7 +267,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
                         if(_formKey.currentState!.validate()){
                           Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
                           AddPost(_varientNameController.text,_varientColorController.text,_cuttingShapeController.text,_weightController.text,_descriptionController.text,
-                              _priceController.text, _emailController.text,_imgUrlController.text,_locationController.text,_phoneController.text,file!.path).uploadImage();
+                              _priceController.text, _emailController,_imgUrlController.text,_locationController.text,_phoneController.text,file!.path).uploadImage();
                         }
                         else
                           return null;
