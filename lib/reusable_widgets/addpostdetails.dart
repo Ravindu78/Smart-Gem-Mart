@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart' as storage;
+import 'package:path/path.dart' as p;
 
 class AddPost {
 
@@ -23,10 +24,11 @@ class AddPost {
   CollectionReference advertisment = FirebaseFirestore.instance.collection('Advertisment');
 
   Future<void> addPost(String url) {
+
     // Call the user's CollectionReference to add a new user
     return advertisment
-        .doc(email)
-        .set({
+
+        .add({
       'advertismentId':01,
       'varient': varient, // John Doe
       'color': color, // Stokes and Sons
@@ -38,6 +40,7 @@ class AddPost {
       'imgUrl':url,
       'location':location,
       'phone':phone,
+      'time':DateTime.now(),
     })
         .then((value) {
           print("advertisment Added");
@@ -46,9 +49,11 @@ class AddPost {
   }
 
   Future<void> uploadImage() async{
+    Timestamp time = Timestamp.now();
+    String filename = '$email-$time';
     File file = File(filePath);
     try{
-      final ref = await storage.FirebaseStorage.instance.ref('uploads/image.png').putFile(file);
+      final ref = await storage.FirebaseStorage.instance.ref('advertisments/$filename').putFile(file);
       final url = await ref.ref.getDownloadURL();
       print(url);
       addPost(url);

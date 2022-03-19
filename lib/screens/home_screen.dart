@@ -66,17 +66,21 @@ class _HomeScreenState extends State<HomeScreen> {
         titleSpacing: 20,
       ),
         drawer: Drawer(
+         backgroundColor: Colors.white60,
+          child: ListView(
+            children: [
+              Container(
 
-          child: Container(
-            decoration: BoxDecoration(
-                gradient: LinearGradient(colors: [
-                  hexStringToColor("CB2B93"),
-                  hexStringToColor("9546C4"),
-                  hexStringToColor("5E61F4")
-                ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
-            child: ListView(
-              children: [
-                UserAccountsDrawerHeader(accountName: Text('Ravindu Arsakualsooriya'), accountEmail: Text('ravindup33@gmail.com'),
+                child: UserAccountsDrawerHeader(accountName: Text('Ravindu Arsakualsooriya'), accountEmail: Text('ravindup33@gmail.com'),
+                   decoration: BoxDecoration(
+
+                     gradient: LinearGradient(
+                       colors: [hexStringToColor("CB2B93"),
+                         hexStringToColor("9546C4"),
+                         hexStringToColor("5E61F4")],
+                       begin: Alignment.topCenter, end: Alignment.bottomCenter,
+                     ),
+                   ),
                   currentAccountPicture: GestureDetector(
                     child: CircleAvatar(
                       backgroundColor: Colors.grey,
@@ -86,77 +90,81 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
 
                 ),
-                Container(
-                  decoration: BoxDecoration(
-                  color: Colors.white
+              ),
+              Container(
+                height: 550,
+                child: Column(
+                  children: [
+                    InkWell(
+                      onTap: (){},
+                      child: ListTile(
+                        title: Text('Home Page'),
+                        leading: Icon(Icons.home, color: Colors.red,),
+                        onTap: ()=> Navigator.of(context).push(
+                            MaterialPageRoute(
+                              //passing the values of the gem products to the product detils page
+                                builder: (context) => HomeScreen())),),
+                    ),
+                    InkWell(
+                      onTap: (){},
+                      child: ListTile(
+                        title: Text('My Profile'),
+                        leading: Icon(Icons.person, color: Colors.red,),
+                        onTap: ()=> Navigator.of(context).push(
+                            MaterialPageRoute(
+                              //passing the values of the gem products to the product detils page
+                                builder: (context) => Profile())),),
+                      ),
 
-                  ),
-                  height: 550,
-                  child: Column(
-                    children: [
-                      InkWell(
-                        onTap: (){},
-                        child: ListTile(
-                          title: Text('Home Page'),
-                          leading: Icon(Icons.home, color: Colors.red,),
-                        ),
+                    InkWell(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => new Cart()));
+                      },
+                      child: ListTile(
+                        title: Text('QR Scanner'),
+                        leading: Icon(Icons.qr_code_scanner, color: Colors.red,),
                       ),
-                      InkWell(
-                        onTap: (){},
-                        child: ListTile(
-                          title: Text('My Account'),
-                          leading: Icon(Icons.person, color: Colors.red,),
-                        ),
+                    ),
+                    InkWell(
+                      onTap: (){},
+                      child: ListTile(
+                        title: Text('Barcode Scanner'),
+                        leading: Icon(Icons.code, color: Colors.red,),
                       ),
-                      InkWell(
-                        onTap: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => new Cart()));
-                        },
-                        child: ListTile(
-                          title: Text('Shopping Cart'),
-                          leading: Icon(Icons.shopping_cart, color: Colors.red,),
-                        ),
+                    ),
+                    InkWell(
+                      onTap: (){},
+                      child: ListTile(
+                        title: Text('Favorite'),
+                        leading: Icon(Icons.favorite, color: Colors.red,),
                       ),
-                      InkWell(
-                        onTap: (){},
-                        child: ListTile(
-                          title: Text('Home Page'),
-                          leading: Icon(Icons.home, color: Colors.red,),
-                        ),
+                    ),
+                    Divider(),
+                    InkWell(
+                      onTap: (){},
+                      child: ListTile(
+                        title: Text('Settings'),
+                        leading: Icon(Icons.settings, color: Colors.red,),
                       ),
-                      InkWell(
-                        onTap: (){},
-                        child: ListTile(
-                          title: Text('Favorite'),
-                          leading: Icon(Icons.favorite, color: Colors.red,),
-                        ),
+                    ),
+                    InkWell(
+                      onTap: (){},
+                      child: ListTile(
+                        title: Text('About'),
+                        leading: Icon(Icons.help, color: Colors.red,),
                       ),
-                      Divider(),
-                      InkWell(
-                        onTap: (){},
-                        child: ListTile(
-                          title: Text('Settings'),
-                          leading: Icon(Icons.settings, color: Colors.red,),
-                        ),
-                      ),
-                      InkWell(
-                        onTap: (){},
-                        child: ListTile(
-                          title: Text('About'),
-                          leading: Icon(Icons.help, color: Colors.red,),
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
+              ),
 
 
-              ],
-            ),
+            ],
           ),
         ),
 
       body: TabBarView(
+
         children: [
           //buildPage('Home Page'),
 

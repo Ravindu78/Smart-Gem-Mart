@@ -23,7 +23,7 @@ class _ProductsState extends State<Products> {
           children: [
             StreamBuilder(
               stream: FirebaseFirestore.instance
-                  .collection("Advertisment")
+                  .collection("Advertisment").orderBy('time',descending: true)
                   .snapshots(),
               builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
                 if (snapshot.hasError) {
@@ -81,7 +81,7 @@ class _ProductsState extends State<Products> {
                                       width: 100,
                                       height: 80,
                                       child: Image.network(
-                                        imgurl,
+                                        category['imgUrl'],
                                         fit: BoxFit.fill,
                                       ),
                                     ),

@@ -26,7 +26,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
   TextEditingController _cuttingShapeController = TextEditingController();
   TextEditingController _weightController = TextEditingController();
   TextEditingController _descriptionController = TextEditingController();
-  late String _emailController;
+  late String  _emailController;
   TextEditingController _imgUrlController = TextEditingController();
   TextEditingController _locationController = TextEditingController();
   TextEditingController _phoneController = TextEditingController();
