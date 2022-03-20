@@ -47,6 +47,7 @@ class _PostsState extends State<Posts> {
          // ),
           Container(
 
+
             child: Flexible(child: Products()),
           ),
 

@@ -38,7 +38,7 @@ class _ProductsState extends State<Products> {
                 if (snapshot.hasData) {
                   print('has data');
                   return Container(
-                    height: 529,
+                    height: 670.00,
                     color: Colors.white,
                     child: GridView.builder(
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -71,34 +71,52 @@ class _ProductsState extends State<Products> {
                                         builder: (context) => ProductDetails(
                                           imgurl,price,descrip,varient,color,shape,weight,phoneNo,email,location
                                         ))),
-                                child: Column(
-
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: <Widget>[
-                                    Container(
-                                      margin: EdgeInsets.only(
-                                          top: 5, right: 5, left: 5),
-                                      width: 100,
-                                      height: 80,
+                                // child: Column(
+                                //
+                                //   crossAxisAlignment: CrossAxisAlignment.center,
+                                //   children: <Widget>[
+                                //     Container(
+                                //       margin: EdgeInsets.only(
+                                //           top: 5, right: 5, left: 5),
+                                //       width: 100,
+                                //       height: 80,
+                                //       child: Image.network(
+                                //         category['imgUrl'],
+                                //         fit: BoxFit.fill,
+                                //       ),
+                                //     ),
+                                //     Padding(
+                                //       padding:  EdgeInsets.only(
+                                //           top: 5, bottom: 5),
+                                //       child: Text(
+                                //         category['varient'],
+                                //         textAlign: TextAlign.center,
+                                //         style: TextStyle(),
+                                //       ),
+                                //     ),
+                                //   ],
+                                // ),
+                              child: GridTile(
+                                  footer: Container(
+                                    height: 40,
+                                    color: Colors.white60,
+                                    child: Row(
+                                      children: [
+                                        Expanded(
+                                          child: Text(varient, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),),
+                                        ),
+                                        Text(price, style: TextStyle(color: Colors.purple, fontWeight: FontWeight.bold),)
+                                      ],
+                                    ),
+                                  ),
                                       child: Image.network(
-                                        category['imgUrl'],
-                                        fit: BoxFit.fill,
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding:  EdgeInsets.only(
-                                          top: 5, bottom: 5),
-                                      child: Text(
-                                        category['varient'],
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(),
-                                      ),
-                                    ),
-                                  ],
-                                ),
+
+                                category['imgUrl'],
+                                fit: BoxFit.fill,
+                               ),
                               ),
                           ),
-                        );
+                          ));
                       },
                     ),
                   );

@@ -133,11 +133,16 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                     InkWell(
-                      onTap: (){},
+
                       child: ListTile(
-                        title: Text('Favorite'),
-                        leading: Icon(Icons.favorite, color: Colors.red,),
+                        title: Text('Knowleadge Panel'),
+                        leading: Icon(Icons.book, color: Colors.red,),
+                        onTap: ()=> Navigator.of(context).push(
+                            MaterialPageRoute(
+                              //passing the values of the gem products to the product detils page
+                                builder: (context) => Education())),
                       ),
+
                     ),
                     Divider(),
                     InkWell(
@@ -145,6 +150,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: ListTile(
                         title: Text('Settings'),
                         leading: Icon(Icons.settings, color: Colors.red,),
+
                       ),
                     ),
                     InkWell(
@@ -153,6 +159,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         title: Text('About'),
                         leading: Icon(Icons.help, color: Colors.red,),
                       ),
+
                     ),
                   ],
                 ),
