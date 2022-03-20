@@ -1,4 +1,6 @@
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:smart_gem_mart/cart/cart.dart';
 import 'package:smart_gem_mart/screens/knowleadgepanel_screen.dart';
 import 'package:smart_gem_mart/screens/profile_screen.dart';
@@ -6,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:smart_gem_mart/screens/categories_screen.dart';
 import 'package:smart_gem_mart/screens/posts.dart';
 import 'package:smart_gem_mart/utils/color_utils.dart';
+import 'package:smart_gem_mart/screens/about_screen.dart';
 
 
 import '../reusable_widgets/reusable_widget.dart';
@@ -15,8 +18,60 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  late String email;
+  String name='';
+  bool states=true;
+
   @override
-  Widget build(BuildContext context) => DefaultTabController(
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    var currentUser = FirebaseAuth.instance.currentUser;
+
+
+    if (currentUser != null) {
+      email=currentUser.email!;
+      print(currentUser.email);
+    }
+    getUserName ();
+  }
+
+  void getUserName () async
+  {
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(email)
+        .get()
+        .then((DocumentSnapshot documentSnapshot) {
+      if (documentSnapshot.exists) {
+        setState(() {
+          name= '${documentSnapshot['name']}';
+        });
+
+        print('Document data: ${documentSnapshot.data()}');
+      } else {
+        print('Document does not exist on the database');
+      }
+    });
+  }
+
+  @override
+  // TODO: implement widget
+  Widget Loading()
+  {
+    return Container(
+        alignment: Alignment.topCenter,
+        margin: EdgeInsets.only(top: 20),
+        child: CircularProgressIndicator(
+          value: 0.8,
+        )
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) =>
+      DefaultTabController(
+
     length: 4,
     child: Scaffold(
       appBar: AppBar(
@@ -71,7 +126,7 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               Container(
 
-                child: UserAccountsDrawerHeader(accountName: Text('Ravindu Arsakualsooriya'), accountEmail: Text('ravindup33@gmail.com'),
+                child: UserAccountsDrawerHeader(accountName: Text(name), accountEmail: Text(email),
                    decoration: BoxDecoration(
 
                      gradient: LinearGradient(
@@ -154,7 +209,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                     InkWell(
-                      onTap: (){},
+                      onTap: ()=> Navigator.of(context).push(
+                          MaterialPageRoute(
+                            //passing the values of the gem products to the product detils page
+                              builder: (context) => About())),
                       child: ListTile(
                         title: Text('About'),
                         leading: Icon(Icons.help, color: Colors.red,),
@@ -207,7 +265,6 @@ class _HomeScreenState extends State<HomeScreen> {
     ),
 
   );
-
   Widget buildPage(String text) => Center(
     child: Text(
       text,
