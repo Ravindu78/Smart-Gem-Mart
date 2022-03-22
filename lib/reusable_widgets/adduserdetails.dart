@@ -17,8 +17,8 @@ class AddUser {
       return users
           .doc(email)
           .set({
-        'email': email, // John Doe
-        'name': username, // Stokes and Sons
+        'email': email,
+        'name': username,
          'number':number,
         'password':password,
         'nic':nic,

@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:smart_gem_mart/utils/color_utils.dart';
 
 class ProductDetails extends StatefulWidget {
   String imgurl;
@@ -11,7 +13,7 @@ class ProductDetails extends StatefulWidget {
   String weight;
   String phoneNo;
   String  email;
-  String location;
+  GeoPoint location;
 
   ProductDetails(this.imgurl,this.price,this.descrip,this.varient,this.color,this.shape,this.weight,this.phoneNo,this.email,this.location);
 
@@ -31,20 +33,29 @@ class _ProductDetailsState extends State<ProductDetails> {
   String weight;
   String phoneNo;
   String  email;
-  String location;
+  GeoPoint location;
   _ProductDetailsState(this.imgurl,this.price,this.descrip,this.varient,this.color,this.shape,this.weight,this.phoneNo,this.email,this.location);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [hexStringToColor("CB2B93"),
+                hexStringToColor("9546C4"),
+                hexStringToColor("5E61F4")],
+              begin: Alignment.topCenter, end: Alignment.bottomCenter,
+            ),
+          ),
+        ),
         elevation: 0.2,
-        backgroundColor: Colors.red,
         title: InkWell(
             onTap: (){
             //  Navigator.push(context, MaterialPageRoute(builder: (context)=> new HomePage()));
               },
-            child: Text("Smart Gem Mart")),
+            child: Text("Product Details")),
         actions: [
           new IconButton(onPressed:(){}, icon: Icon(Icons.search)
           ),
@@ -74,7 +85,7 @@ class _ProductDetailsState extends State<ProductDetails> {
 
                       Expanded(child: Text("$price",
                         style: TextStyle(
-                            fontWeight: FontWeight.bold, color: Colors.red),)
+                            fontWeight: FontWeight.bold, color: Colors.deepPurple),)
                       ),
                     ],
                   ),
@@ -94,16 +105,14 @@ class _ProductDetailsState extends State<ProductDetails> {
               //===== the size button
               Expanded(
                 child: MaterialButton(onPressed: () {},
-                    color: Colors.red,
+                    color: Colors.purpleAccent,
                     textColor: Colors.white,
                     elevation: 0.2,
-                    child: Text("Buy now")
+                    child: Text("Chat")
                 ),
               ),
               IconButton(onPressed: () {},
-                icon: Icon(Icons.add_shopping_cart, color: Colors.red,),),
-              IconButton(onPressed: () {},
-                icon: Icon(Icons.favorite_border, color: Colors.red,),),
+                icon: Icon(Icons.favorite_border, color: Colors.deepPurple,),),
             ],
           ),
 
@@ -160,7 +169,28 @@ class _ProductDetailsState extends State<ProductDetails> {
             ],
           ),
 
+        Container(
+          child:  Expanded(
+            child: Stack(children: [
+              GoogleMap(
 
+                markers: {
+                  Marker(
+                    visible: true,
+                    markerId: const MarkerId('_kGooglePlex'),
+                    //infoWindow: InfoWindow(title: 'Google Plex'),
+                    icon: BitmapDescriptor.defaultMarker,
+                    position: LatLng(location.latitude, location.longitude),
+                  ),
+                },
+                mapType: MapType.normal,
+                myLocationEnabled: true,
+                initialCameraPosition:
+                const CameraPosition(target: LatLng(7.8731, 80.7718), zoom: 7.8),
+              ),
+            ]),
+          ),
+        )
 
 
         ],

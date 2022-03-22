@@ -58,7 +58,7 @@ class _ProductsState extends State<Products> {
                         String weight=category['weight'];
                         String phoneNo=category['phone'];
                         String  email=category['email'];
-                        String  location=category['location'];
+                        GeoPoint  location=category['location'];
 
 
                         return Container(

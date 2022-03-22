@@ -1,5 +1,7 @@
-import 'package:flutter/material.dart';
 
+
+import 'package:flutter/material.dart';
+import 'package:smart_gem_mart/utils/color_utils.dart';
 
 class Profile extends StatelessWidget {
   @override
@@ -11,15 +13,11 @@ class Profile extends StatelessWidget {
       children: [
         Container(
           decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                Color.fromRGBO(4, 9, 35, 1),
-                Color.fromRGBO(39, 105, 171, 1),
-              ],
-              begin: FractionalOffset.bottomCenter,
-              end: FractionalOffset.topCenter,
-            ),
-          ),
+              gradient: LinearGradient(colors: [
+                hexStringToColor("CB2B93"),
+                hexStringToColor("9546C4"),
+                hexStringToColor("5E61F4")
+              ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
         ),
         Scaffold(
           backgroundColor: Colors.transparent,
@@ -29,24 +27,12 @@ class Profile extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 73),
               child: Column(
                 children: [
-                  // Row(
-                  //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //   children: [
-                  //     Icon(
-                  //       AntDesign.arrowleft,
-                  //       color: Colors.white,
-                  //     ),
-                  //     Icon(
-                  //       AntDesign.logout,
-                  //       color: Colors.white,
-                  //     ),
-                  //   ],
-                  // ),
+
                   SizedBox(
                     height: 20,
                   ),
                   Text(
-                    'My\nProfile',
+                    'Ravindu',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.white,
@@ -58,7 +44,7 @@ class Profile extends StatelessWidget {
                     height: 22,
                   ),
                   Container(
-                    height: height * 0.43,
+                    height: height * 1,
                     child: LayoutBuilder(
                       builder: (context, constraints) {
                         double innerHeight = constraints.maxHeight;
@@ -71,92 +57,74 @@ class Profile extends StatelessWidget {
                               left: 0,
                               right: 0,
                               child: Container(
-                                height: innerHeight * 0.72,
+                                height: innerHeight * 1,
                                 width: innerWidth,
                                 decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(30),
+                                  borderRadius: BorderRadius.circular(25),
                                   color: Colors.white,
                                 ),
-                                child: Column(
-                                  children: [
-                                    SizedBox(
-                                      height: 80,
-                                    ),
-                                    Text(
-                                      'Jhone Doe',
-                                      style: TextStyle(
-                                        color: Color.fromRGBO(39, 105, 171, 1),
-                                        fontFamily: 'Nunito',
-                                        fontSize: 37,
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 30),
+                                  child: Column(
+                                    children: [
+                                      SizedBox(
+                                        height: 40,
                                       ),
-                                    ),
-                                    SizedBox(
-                                      height: 5,
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                      MainAxisAlignment.center,
-                                      children: [
-                                        Column(
-                                          children: [
-                                            Text(
-                                              'Orders',
-                                              style: TextStyle(
-                                                color: Colors.grey[700],
-                                                fontFamily: 'Nunito',
-                                                fontSize: 25,
-                                              ),
-                                            ),
-                                            Text(
-                                              '10',
-                                              style: TextStyle(
-                                                color: Color.fromRGBO(
-                                                    39, 105, 171, 1),
-                                                fontFamily: 'Nunito',
-                                                fontSize: 25,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                            horizontal: 25,
-                                            vertical: 8,
+                                  Container(
+                                    alignment: Alignment.centerLeft,
+                                    child: Row(
+                                      children: [Icon(Icons.person),
+
+                                          SizedBox(
+                                            width: 10,
                                           ),
-                                          child: Container(
-                                            height: 50,
-                                            width: 3,
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                              BorderRadius.circular(100),
-                                              color: Colors.grey,
-                                            ),
-                                          ),
-                                        ),
-                                        Column(
-                                          children: [
-                                            Text(
-                                              'Pending',
-                                              style: TextStyle(
-                                                color: Colors.grey[700],
-                                                fontFamily: 'Nunito',
-                                                fontSize: 25,
-                                              ),
-                                            ),
-                                            Text(
-                                              '1',
-                                              style: TextStyle(
-                                                color: Color.fromRGBO(
-                                                    39, 105, 171, 1),
-                                                fontFamily: 'Nunito',
-                                                fontSize: 25,
-                                              ),
-                                            ),
-                                          ],
+
+                                        Text( 'Ravindu Arsakulasooriya',
+                                          textAlign: TextAlign.left,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: const TextStyle(fontWeight: FontWeight.bold),
                                         ),
                                       ],
-                                    )
-                                  ],
+                                    ),
+                                  ),
+                                      Container(
+                                        alignment: Alignment.centerLeft,
+                                        child: Row(
+                                          children: [Icon(Icons.person),
+
+                                            SizedBox(
+                                              width: 10,
+                                            ),
+
+                                            Text( '0714684193',
+                                              textAlign: TextAlign.left,
+                                              overflow: TextOverflow.ellipsis,
+                                              style: const TextStyle(fontWeight: FontWeight.bold),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Container(
+                                        alignment: Alignment.centerLeft,
+                                        child: Row(
+                                          children: [Icon(Icons.person),
+
+                                            SizedBox(
+                                              width: 10,
+                                            ),
+
+                                            Text( 'Ravindu Arsakulasooriya',
+                                              textAlign: TextAlign.left,
+                                              overflow: TextOverflow.ellipsis,
+                                              style: const TextStyle(fontWeight: FontWeight.bold),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                     // ListTile(leading: Icon(Icons.person),title: Text("title"),subtitle: Text("subtitle"),trailing: Icon(Icons.arrow_forward),),
+                                    ],
+
+                                  ),
                                 ),
                               ),
                             ),
@@ -169,20 +137,7 @@ class Profile extends StatelessWidget {
                             //     size: 30,
                             //   ),
                             // ),
-                            Positioned(
-                              top: 0,
-                              left: 0,
-                              right: 0,
-                              child: Center(
-                                child: Container(
-                                  child: Image.asset(
-                                    'assets/img/profile.png',
-                                    width: innerWidth * 0.45,
-                                    fit: BoxFit.fitWidth,
-                                  ),
-                                ),
-                              ),
-                            ),
+
                           ],
                         );
                       },
@@ -205,37 +160,8 @@ class Profile extends StatelessWidget {
                           SizedBox(
                             height: 20,
                           ),
-                          Text(
-                            'My Orders',
-                            style: TextStyle(
-                              color: Color.fromRGBO(39, 105, 171, 1),
-                              fontSize: 27,
-                              fontFamily: 'Nunito',
-                            ),
-                          ),
-                          Divider(
-                            thickness: 2.5,
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Container(
-                            height: height * 0.15,
-                            decoration: BoxDecoration(
-                              color: Colors.grey,
-                              borderRadius: BorderRadius.circular(30),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Container(
-                            height: height * 0.15,
-                            decoration: BoxDecoration(
-                              color: Colors.grey,
-                              borderRadius: BorderRadius.circular(30),
-                            ),
-                          ),
+                          TextField()
+                          //=====
                         ],
                       ),
                     ),

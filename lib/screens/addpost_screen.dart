@@ -2,6 +2,7 @@
 import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:smart_gem_mart/map.dart';
 import 'package:smart_gem_mart/reusable_widgets/reusable_widget.dart';
 import 'package:smart_gem_mart/screens/home_screen.dart';
 import 'package:smart_gem_mart/utils/color_utils.dart';
@@ -263,11 +264,10 @@ void initState() {
                       const SizedBox(
                         height: 20,
                       ),
-                      firebaseUIButton(context, "Post", () {
+                      firebaseUIButton(context, "Select Location", () {
                         if(_formKey.currentState!.validate()){
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
-                          AddPost(_varientNameController.text,_varientColorController.text,_cuttingShapeController.text,_weightController.text,_descriptionController.text,
-                              _priceController.text, _emailController,_imgUrlController.text,_locationController.text,_phoneController.text,file!.path).uploadImage();
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => SelectLocation(_varientNameController.text,_varientColorController.text,_cuttingShapeController.text,_weightController.text,_descriptionController.text,
+                              _priceController.text, _emailController,_imgUrlController.text,_phoneController.text,file!.path)));
                         }
                         else
                           return null;

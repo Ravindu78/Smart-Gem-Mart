@@ -15,7 +15,7 @@ class AddPost {
   String price;
   String email;
   String imgUrl;
-  String location;
+  GeoPoint location;
   String phone;
   String filePath;
 
@@ -41,6 +41,7 @@ class AddPost {
       'location':location,
       'phone':phone,
       'time':DateTime.now(),
+
     })
         .then((value) {
           print("advertisment Added");
