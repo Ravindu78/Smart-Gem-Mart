@@ -87,7 +87,7 @@ void initState() {
                       ),
                       Row(
                         children: [
-                          Expanded(child: reusableTextField3("Choose The Varient", Icons.lock_outline, false, false, _varientNameController,'Choose The Varient'),),
+                          Expanded(child: reusableTextField3("Choose The Varient", Icons.checklist_outlined, false, false, _varientNameController,'Choose The Varient'),),
                           PopupMenuButton(
                             onSelected: (value) { setState(() { _varientNameController.text = value.toString(); }); },
                             icon: Icon(Icons.more_vert),
@@ -123,7 +123,7 @@ void initState() {
                       ),
                       Row(
                         children: [
-                          Expanded(child: reusableTextField3("Choose The Color", Icons.lock_outline, false, false, _varientColorController, 'Choose the color'),),
+                          Expanded(child: reusableTextField3("Choose The Color", Icons.checklist_outlined, false, false, _varientColorController, 'Choose the color'),),
                           PopupMenuButton(
                             onSelected: (value) { setState(() { _varientColorController.text = value.toString(); }); },
                             icon: Icon(Icons.more_vert),
@@ -159,7 +159,7 @@ void initState() {
                       ),
                       Row(
                         children: [
-                          Expanded(child: reusableTextField3("Choose The Cutting Shape", Icons.lock_outline, false, false, _cuttingShapeController, 'Choose the cutting shape')),
+                          Expanded(child: reusableTextField3("Choose The Cutting Shape", Icons.checklist_outlined, false, false, _cuttingShapeController, 'Choose the cutting shape')),
                           PopupMenuButton(
                             onSelected: (value) { setState(() { _cuttingShapeController.text = value.toString(); }); },
                             icon: Icon(Icons.more_vert),
@@ -198,7 +198,7 @@ void initState() {
                       Row(
                         children: [
                           Expanded(child: reusableTextField4(
-                              " weight", Icons.lock_outline, false,true, _weightController,'Please Enter the weight',r'[+-]?([0-9]*[.])?[0-9]+','Enter valid Weight'),),
+                              " weight", Icons.monitor_weight, false,true, _weightController,'Please Enter the weight',r'[+-]?([0-9]*[.])?[0-9]+','Enter valid Weight'),),
                         ],
                       ),
 
@@ -207,7 +207,7 @@ void initState() {
                       ),
                       Row(
                         children: [
-                          Expanded(child: reusableTextField3("more details", Icons.lock_outline, false,true, _descriptionController,'Enter Details'),),
+                          Expanded(child: reusableTextField3("more details", Icons.details, false,true, _descriptionController,'Enter Details'),),
                         ],
                       ),
                       const SizedBox(
@@ -215,7 +215,7 @@ void initState() {
                       ),
                       Row(
                         children: [
-                          Expanded(child: reusableTextField4("price", Icons.lock_outline, false,true, _priceController,'Enter the price',r'(^\d{0,8}(\.\d{1,4})?$)', 'Enter a Valid Price'),),
+                          Expanded(child: reusableTextField4("price", Icons.price_change, false,true, _priceController,'Enter the price',r'(^\d{0,8}(\.\d{1,4})?$)', 'Enter a Valid Price'),),
                         ],
                       ),
                       const SizedBox(
@@ -227,6 +227,14 @@ void initState() {
                         //]/,
                       //),
 
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        children: [
+                          Expanded(child: reusableTextField4("phone", Icons.phone, false,true, _phoneController,'Enter your phone numuber', r'(^(?:[+0]9)?[0-9]{10,12}$)', 'Enter a valid Number'),),
+                        ],
+                      ),
                       const SizedBox(
                         height: 20,
                       ),
@@ -248,22 +256,7 @@ void initState() {
                       const SizedBox(
                         height: 20,
                       ),
-                      Row(
-                        children: [
-                          Expanded(child: reusableTextField3("address", Icons.lock_outline, false, true, _locationController,'Enter your address'),),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Row(
-                        children: [
-                          Expanded(child: reusableTextField4("phone", Icons.lock_outline, false,true, _phoneController,'Enter your phone numuber', r'(^(?:[+0]9)?[0-9]{10,12}$)', 'Enter a valid Number'),),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
+
                       firebaseUIButton(context, "Select Location", () {
                         if(_formKey.currentState!.validate()){
                           Navigator.push(context, MaterialPageRoute(builder: (context) => SelectLocation(_varientNameController.text,_varientColorController.text,_cuttingShapeController.text,_weightController.text,_descriptionController.text,

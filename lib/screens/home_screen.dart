@@ -1,7 +1,6 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:smart_gem_mart/cart/cart.dart';
 import 'package:smart_gem_mart/screens/knowleadgepanel_screen.dart';
 import 'package:smart_gem_mart/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
@@ -72,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) =>
       DefaultTabController(
 
-    length: 4,
+    length: 3,
     child: Scaffold(
       appBar: AppBar(
 
@@ -84,12 +83,6 @@ class _HomeScreenState extends State<HomeScreen> {
          // },
        // ),
         actions: [
-          IconButton(
-            icon: Icon(Icons.shopping_cart),
-            onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => Cart()));
-            },
-          ),
           IconButton(
             icon: Icon(Icons.search),
             onPressed: () {},
@@ -112,8 +105,8 @@ class _HomeScreenState extends State<HomeScreen> {
           indicatorWeight: 5,
           tabs: [
             Tab(icon: Icon(Icons.home), text: 'Home'),
-            Tab(icon: Icon(Icons.star), text: 'Categories'),
-            Tab(icon: Icon(Icons.face), text: 'Profile'),
+            Tab(icon: Icon(Icons.calculate), text: 'Price Checker'),
+
             Tab(icon: Icon(Icons.book), text: 'Education'),
           ],
         ),
@@ -154,7 +147,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       onTap: (){},
                       child: ListTile(
                         title: Text('Home Page'),
-                        leading: Icon(Icons.home, color: Colors.red,),
+                        leading: Icon(Icons.home, color: Colors.purple,),
                         onTap: ()=> Navigator.of(context).push(
                             MaterialPageRoute(
                               //passing the values of the gem products to the product detils page
@@ -164,7 +157,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       onTap: (){},
                       child: ListTile(
                         title: Text('My Profile'),
-                        leading: Icon(Icons.person, color: Colors.red,),
+                        leading: Icon(Icons.person, color: Colors.purple,),
                         onTap: ()=> Navigator.of(context).push(
                             MaterialPageRoute(
                               //passing the values of the gem products to the product detils page
@@ -173,25 +166,25 @@ class _HomeScreenState extends State<HomeScreen> {
 
                     InkWell(
                       onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => new Cart()));
+
                       },
                       child: ListTile(
                         title: Text('QR Scanner'),
-                        leading: Icon(Icons.qr_code_scanner, color: Colors.red,),
+                        leading: Icon(Icons.qr_code_scanner, color: Colors.purple,),
                       ),
                     ),
                     InkWell(
                       onTap: (){},
                       child: ListTile(
                         title: Text('Barcode Scanner'),
-                        leading: Icon(Icons.code, color: Colors.red,),
+                        leading: Icon(Icons.code, color: Colors.purple,),
                       ),
                     ),
                     InkWell(
 
                       child: ListTile(
                         title: Text('Knowleadge Panel'),
-                        leading: Icon(Icons.book, color: Colors.red,),
+                        leading: Icon(Icons.book, color: Colors.purple,),
                         onTap: ()=> Navigator.of(context).push(
                             MaterialPageRoute(
                               //passing the values of the gem products to the product detils page
@@ -204,7 +197,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       onTap: (){},
                       child: ListTile(
                         title: Text('Settings'),
-                        leading: Icon(Icons.settings, color: Colors.red,),
+                        leading: Icon(Icons.settings, color: Colors.purple,),
 
                       ),
                     ),
@@ -215,7 +208,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               builder: (context) => About())),
                       child: ListTile(
                         title: Text('About'),
-                        leading: Icon(Icons.help, color: Colors.red,),
+                        leading: Icon(Icons.help, color: Colors.purple,),
                       ),
 
                     ),
@@ -235,9 +228,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
           //=====body testing button remove this====
           Posts(),
-          Categories(),
-          Profile(),
-          Education()
+          Education(),
+
+          Education(),
 
         ],
       ),

@@ -57,11 +57,10 @@ class _CategoriesState extends State<Categories> {
               if (snapshot.hasData) {
                 print('has data');
                 return Container(
-                  height: 643,
+                  height: 150,
                   color: Colors.white,
-                  child: GridView.builder(
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2),
+                  child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
                     itemCount: snapshot.data?.docs.length,
 
                     // ignore: missing_return
