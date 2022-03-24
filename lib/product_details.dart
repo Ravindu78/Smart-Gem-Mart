@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:smart_gem_mart/screens/chat_screen.dart';
 import 'package:smart_gem_mart/utils/color_utils.dart';
 
 class ProductDetails extends StatefulWidget {
@@ -104,7 +105,12 @@ class _ProductDetailsState extends State<ProductDetails> {
             children: [
               //===== the size button
               Expanded(
-                child: MaterialButton(onPressed: () {},
+                child: MaterialButton(
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) =>
+                            ChatScreen('ravindu54@gmail.com')));
+                    },
                     color: Colors.purpleAccent,
                     textColor: Colors.white,
                     elevation: 0.2,
