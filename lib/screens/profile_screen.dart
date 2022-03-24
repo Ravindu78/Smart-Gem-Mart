@@ -3,6 +3,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:smart_gem_mart/reusable_widgets/reusable_widget.dart';
+import 'package:smart_gem_mart/screens/signin_screen.dart';
+import 'package:smart_gem_mart/screens/splash_screen.dart';
 import 'package:smart_gem_mart/utils/color_utils.dart';
 
 class Profile extends StatefulWidget{
@@ -53,13 +56,12 @@ class _ProfileState extends State<Profile> {
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 73),
               child: Column(
                 children: [
-                  SizedBox(
-                    height: 20,
+                  ImageIcon(
+                    AssetImage("assets/images/categories/profile.png"),
+                    color: Colors.white60,
+                    size: 110,
                   ),
-                  Text('mnmnmn'),
-                  SizedBox(
-                    height: 20,
-                  ),
+
     FutureBuilder<DocumentSnapshot>(
     future: users.doc(_emailController).get(),
     builder:
@@ -76,113 +78,173 @@ class _ProfileState extends State<Profile> {
     if (snapshot.connectionState == ConnectionState.done) {
     Map<String, dynamic> data = snapshot.data!.data() as Map<String, dynamic>;
 
-    return    Container(
+    return    Column(
+      children: [
+        Container(
 
-      height: height * 1,
-      child: LayoutBuilder(
-        builder: (context, constraints) {
-          double innerHeight = constraints.maxHeight;
-          double innerWidth = constraints.maxWidth;
-          return Stack(
-            fit: StackFit.expand,
-            children: [
-              Positioned(
-                bottom: 0,
-                left: 0,
-                right: 0,
-                child: Container(
-                  height: innerHeight * 1,
-                  width: innerWidth,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(25),
-                    color: Colors.white,
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 30),
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: 10,
+          height: height * .3,
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              double innerHeight = constraints.maxHeight;
+              double innerWidth = constraints.maxWidth;
+              return Stack(
+                fit: StackFit.expand,
+                children: [
+                  Positioned(
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    child: Container(
+
+                      height: innerHeight * 1,
+                      width: innerWidth,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(25),
+                        color: Colors.white60,
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 30),
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: 30,
+                            ),
+                            Container(
+                              alignment: Alignment.centerLeft,
+                              child: Row(
+                                children: [Icon(Icons.person),
+
+                                  SizedBox(
+                                    width: 15,
+                                  ),
+
+                                  Text( data['name'],
+                                    textAlign: TextAlign.left,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: const TextStyle(fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              height: 28,
+                            ),
+                            Container(
+                              alignment: Alignment.centerLeft,
+                              child: Row(
+                                children: [Icon(Icons.mail),
+
+                                  SizedBox(
+                                    width: 15,
+                                  ),
+
+                                  Text(  data['email'],
+                                    textAlign: TextAlign.left,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: const TextStyle(fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              height: 30,
+                            ),
+                            Container(
+                              alignment: Alignment.centerLeft,
+                              child: Row(
+                                children: [Icon(Icons.phone),
+
+                                  SizedBox(
+                                    width: 15,
+                                  ),
+
+                                  Text( data['number'],
+                                    textAlign: TextAlign.left,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: const TextStyle(fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              height: 15,
+                            ),
+                            Container(
+                              alignment: Alignment.centerLeft,
+                              child: Row(
+                                children: [Icon(Icons.perm_identity),
+
+                                  SizedBox(
+                                    width: 15,
+                                  ),
+
+                                  Text( data['nic'],
+                                    textAlign: TextAlign.left,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: const TextStyle(fontWeight: FontWeight.bold),
+                                  ),
+                                  SizedBox(
+                                    width: 144,
+                                  ),
+                                  IconButton(onPressed: (){}, icon: const Icon(Icons.edit),
+                                  color: Colors.deepPurple,)
+                                ],
+                              ),
+                            ),
+
+
+
+                            // Container(
+                            //   alignment: Alignment.centerLeft,
+                            //   child: Row(
+                            //
+                            //     children: [ SizedBox(
+                            //       width: 252,
+                            //     ),
+                            //       IconButton(onPressed: (){}, icon: const Icon(Icons.edit),)
+                            //     ],
+                            //
+                            //   ),
+                            // ),
+                            // ListTile(leading: Icon(Icons.person),title: Text("title"),subtitle: Text("subtitle"),trailing: Icon(Icons.arrow_forward),),
+                          ],
+
                         ),
-                        Container(
-                          alignment: Alignment.centerLeft,
-                          child: Row(
-                            children: [Icon(Icons.person),
-
-                              SizedBox(
-                                width: 10,
-                              ),
-
-                              Text( data['name'],
-                                textAlign: TextAlign.left,
-                                overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(fontWeight: FontWeight.bold),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          alignment: Alignment.centerLeft,
-                          child: Row(
-                            children: [Icon(Icons.person),
-
-                              SizedBox(
-                                width: 10,
-                              ),
-
-                              Text(  data['number'],
-                                textAlign: TextAlign.left,
-                                overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(fontWeight: FontWeight.bold),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          alignment: Alignment.centerLeft,
-                          child: Row(
-                            children: [Icon(Icons.person),
-
-                              SizedBox(
-                                width: 10,
-                              ),
-
-                              Text( data['nic'],
-                                textAlign: TextAlign.left,
-                                overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(fontWeight: FontWeight.bold),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          alignment: Alignment.centerLeft,
-                          child: Row(
-                            children: [Icon(Icons.person),
-
-                              SizedBox(
-                                width: 10,
-                              ),
-
-                              Text( data['email'],
-                                textAlign: TextAlign.left,
-                                overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(fontWeight: FontWeight.bold),
-                              ),
-                            ],
-                          ),
-                        ),
-                        // ListTile(leading: Icon(Icons.person),title: Text("title"),subtitle: Text("subtitle"),trailing: Icon(Icons.arrow_forward),),
-                      ],
-
+                      ),
                     ),
+
                   ),
-                ),
-              ),
-            ],
-          );
-        },
-      ),
+                ],
+
+
+              );
+            },
+          ),
+
+        ),
+
+        Padding(
+          padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
+          child: Container(
+           child: myProfileUiButton(context, "My Advertisements", () {
+             }
+          ),),
+        ),
+        Container(
+          child: myProfileUiButton(context, "Items Purchased", () {
+          }
+          ),),
+        Container(
+          child: myProfileUiButton(context, "Security", () {
+          }
+          ),),
+        Container(
+          child: myProfileUiButton(context, "Log Out", () {
+
+          }
+          ),),
+      ],
+
     );
     }
 
@@ -191,29 +253,7 @@ class _ProfileState extends State<Profile> {
     },
     ),
 
-                  SizedBox(
-                    height: 30,
-                  ),
-                  Container(
-                    height: height * 0.5,
-                    width: width,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30),
-                      color: Colors.white,
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 15),
-                      child: Column(
-                        children: [
-                          SizedBox(
-                            height: 20,
-                          ),
-                          TextField()
-                          //=====
-                        ],
-                      ),
-                    ),
-                  )
+
                 ],
               ),
             ),

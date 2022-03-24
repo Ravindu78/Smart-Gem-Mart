@@ -4,7 +4,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:smart_gem_mart/screens/knowleadgepanel_screen.dart';
 import 'package:smart_gem_mart/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:smart_gem_mart/screens/categories_screen.dart';
 import 'package:smart_gem_mart/screens/posts.dart';
 import 'package:smart_gem_mart/utils/color_utils.dart';
 import 'package:smart_gem_mart/screens/about_screen.dart';
@@ -165,9 +164,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
 
                     InkWell(
-                      onTap: (){
 
-                      },
                       child: ListTile(
                         title: Text('QR Scanner'),
                         leading: Icon(Icons.qr_code_scanner, color: Colors.purple,),
