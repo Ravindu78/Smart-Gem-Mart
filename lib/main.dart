@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_gem_mart/map.dart';
@@ -13,6 +14,16 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(const MyApp());
+}
+
+StatefulWidget initialPage()
+{
+  if(FirebaseAuth.instance.currentUser != null)
+    {
+      return HomeScreen();
+    }else{
+    return const SignInScreen();
+  }
 }
 
 class MyApp extends StatelessWidget {
@@ -38,7 +49,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        '/': (context) => const SplashScreen(),
+        '/': (context) => initialPage(),
         '/1': (context) => HomeScreen(),
       },
     );
