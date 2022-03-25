@@ -1,3 +1,4 @@
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_gem_mart/globals.dart' as globals;
@@ -26,7 +27,7 @@ class _ChatScreenState extends State<ChatScreen> {
               child: Container(
                 //color: Colors.deepPurple,
                 child: StreamBuilder<QuerySnapshot>(
-                  stream: FirebaseFirestore.instance.collection('messages').doc(globals.userEmail).collection(widget.email).snapshots(),
+                  stream: FirebaseFirestore.instance.collection('users').doc(globals.userEmail).collection('messages').doc(widget.email).collection('messages').orderBy('time',descending: false).snapshots(),
                   builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
                     if (snapshot.hasError) {
                       return Text('Something went wrong');
@@ -75,14 +76,14 @@ class _ChatScreenState extends State<ChatScreen> {
   }
 
   void addMessage(String text) async {
-    final res = await FirebaseFirestore.instance.collection('messages').doc(globals.userEmail).collection(widget.email).add({
+    await FirebaseFirestore.instance.collection('users').doc(globals.userEmail).collection('messages').doc(widget.email).collection('messages').add({
       'text': text,
       'time': DateTime.now(),
       'sender':globals.userEmail,
     })
         .then((value) => print("User Added"))
         .catchError((error) => print("Failed to add user: $error"));
-    final res2 = await FirebaseFirestore.instance.collection('messages').doc(widget.email).collection(globals.userEmail).add({
+    await FirebaseFirestore.instance.collection('users').doc(widget.email).collection('messages').doc(globals.userEmail).collection('messages').add({
       'text': text,
       'time': DateTime.now(),
       'sender':globals.userEmail,

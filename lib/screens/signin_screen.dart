@@ -5,7 +5,7 @@ import 'package:smart_gem_mart/screens/reset_password.dart';
 import 'package:smart_gem_mart/screens/signup_screen.dart';
 import 'package:smart_gem_mart/utils/color_utils.dart';
 import 'package:flutter/material.dart';
-
+import 'package:smart_gem_mart/globals.dart' as globals;
 
 import '../reusable_widgets/reusable_widget.dart';
 import '../utils/color_utils.dart';
@@ -54,16 +54,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
                 forgetPassword(context),
                 firebaseUIButton(context, "Sign In", () {
-                  FirebaseAuth.instance
-                      .signInWithEmailAndPassword(
-                      email: _emailTextController.text,
-                      password: _passwordTextController.text)
-                      .then((value) {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => HomeScreen()));
-                  }).onError((error, stackTrace) {
-                    print("Error ${error.toString()}");
-                  });
+                  signIn();
                 }),
                 signUpOption()
               ],
@@ -72,6 +63,17 @@ class _SignInScreenState extends State<SignInScreen> {
         ),
       ),
     );
+  }
+
+  void signIn() async{
+    FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: _emailTextController.text,
+        password: _passwordTextController.text).then((value) {
+          globals.userEmail=value.user!.email!;
+      Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
+    }).onError((error, stackTrace) {
+      print("Error ${error.toString()}");
+    });
   }
 
   Row signUpOption() {

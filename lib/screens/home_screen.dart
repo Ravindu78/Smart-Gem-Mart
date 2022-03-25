@@ -2,6 +2,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:smart_gem_mart/knowleadge_panel/knowleadgepanel_screen.dart';
+import 'package:smart_gem_mart/price_checker/pricechecker_screen.dart';
+import 'package:smart_gem_mart/chat/messages_screen.dart';
 import 'package:smart_gem_mart/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_gem_mart/screens/posts.dart';
@@ -73,7 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) =>
       DefaultTabController(
 
-    length: 3,
+    length: 4,
     child: Scaffold(
       appBar: AppBar(
 
@@ -110,6 +112,7 @@ class _HomeScreenState extends State<HomeScreen> {
             Tab(icon: Icon(Icons.calculate), text: 'Price Checker'),
 
             Tab(icon: Icon(Icons.book), text: 'Education'),
+            Tab(icon: Icon(Icons.message), text: 'Messages'),
           ],
         ),
         elevation: 20,
@@ -208,14 +211,15 @@ class _HomeScreenState extends State<HomeScreen> {
 
                     ),
                     InkWell(
-                      onTap: (){},
+                      onTap: () async {
+                        await FirebaseAuth.instance.signOut();
+                      },
                       child: ListTile(
                         title: Text('Log Out'),
                         leading: Icon(Icons.settings, color: Colors.purple,),
 
                       ),
                     ),
-
                   ],
                 ),
               ),
@@ -232,8 +236,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
           //=====body testing button remove this====
           Posts(),
-          Posts(),
+          PriceChecker(),
           KnowledgePanel(),
+          MessagesScreen(),
 
 
         ],

@@ -49,6 +49,59 @@ void initState() {
     }
   }
 
+  PopupMenuButton reusablePopupmenu(String value1,String value2,String value3,String value4,String value5,String value6,String value7 )
+  {
+    return  PopupMenuButton(
+      onSelected: (value) { setState(() { _varientColorController.text = value.toString(); }); },
+      icon: Icon(Icons.more_vert),
+      itemBuilder: (BuildContext context) => <PopupMenuEntry>[
+         PopupMenuItem(
+          value: value1,
+          child: ListTile(
+
+            title: Text(value1),
+          ),
+        ),
+         PopupMenuItem(
+          value: value2,
+          child: ListTile(
+
+            title: Text(value2),
+          ),
+        ),
+         PopupMenuItem(
+          value: value3,
+          child: ListTile(
+
+            title: Text(value3),
+          ),
+        ),
+        PopupMenuItem(
+          value: value4,
+          child: ListTile(
+
+            title: Text(value4),
+          ),
+        ),
+        PopupMenuItem(
+          value: value5,
+          child: ListTile(
+
+            title: Text(value5),
+          ),
+        ),
+        PopupMenuItem(
+          value: value6,
+          child: ListTile(
+
+            title: Text(value6),
+          ),
+        ),
+      ],
+    );
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -89,7 +142,9 @@ void initState() {
                         children: [
                           Expanded(child: reusableTextField3("Choose The Varient", Icons.checklist_outlined, false, false, _varientNameController,'Choose The Varient'),),
                           PopupMenuButton(
-                            onSelected: (value) { setState(() { _varientNameController.text = value.toString(); }); },
+                            onSelected: (value) { setState(() { _varientNameController.text = value.toString();
+
+                            }); },
                             icon: Icon(Icons.more_vert),
                             itemBuilder: (BuildContext context) => <PopupMenuEntry>[
                               const PopupMenuItem(
@@ -106,12 +161,41 @@ void initState() {
                                 ),
                               ),
                               const PopupMenuItem(
+                                value:'Yellow Sapphire',
+                                child: ListTile(
+                                  title: Text('Yellow Sapphire'),
+                                ),
+                              ),
+                              const PopupMenuItem(
+                                value:'Emerald',
+                                child: ListTile(
+                                  title: Text('Emerald'),
+                                ),
+                              ),
+                              const PopupMenuItem(
+                                value:'Padmaraga',
+                                child: ListTile(
+                                  title: Text('Padmaraga'),
+                                ),
+                              ),
+                              const PopupMenuItem(
                                 value:'Garnet',
                                 child: ListTile(
                                   title: Text('Garnet'),
                                 ),
                               ),
-
+                              const PopupMenuItem(
+                                value:'Cats Eye',
+                                child: ListTile(
+                                  title: Text('Cats Eye'),
+                                ),
+                              ),
+                              const PopupMenuItem(
+                                value:'Star Sapphire',
+                                child: ListTile(
+                                  title: Text('Star Sapphire'),
+                                ),
+                              ),
                             ],
                           ),
 
@@ -124,34 +208,22 @@ void initState() {
                       Row(
                         children: [
                           Expanded(child: reusableTextField3("Choose The Color", Icons.checklist_outlined, false, false, _varientColorController, 'Choose the color'),),
-                          PopupMenuButton(
-                            onSelected: (value) { setState(() { _varientColorController.text = value.toString(); }); },
-                            icon: Icon(Icons.more_vert),
-                            itemBuilder: (BuildContext context) => <PopupMenuEntry>[
-                              const PopupMenuItem(
-                                value: 'sky blue',
-                                child: ListTile(
-
-                                  title: Text('sky blue'),
-                                ),
-                              ),
-                              const PopupMenuItem(
-                                value: 'royal blue',
-                                child: ListTile(
-
-                                  title: Text('royal blue'),
-                                ),
-                              ),
-                              const PopupMenuItem(
-                                value: 'thik blue',
-                                child: ListTile(
-
-                                  title: Text('thik blue'),
-                                ),
-                              ),
-                            ],
-                          ),
-
+                          if( _varientNameController.text=='Blue Sapphire')
+                           reusablePopupmenu('Velvet','Pastal', 'Peacock','Royal','Indigo','Twilight','Other')
+                          else if( _varientNameController.text=='Ruby')
+                            reusablePopupmenu('Pastel','Hot Pink', 'Fuchsia','Pigeons Blood','Royal','Other','Other')
+                          else if( _varientNameController.text=='Yellow Sapphire')
+                              reusablePopupmenu('Fancy Vivid','Fancy Deep', 'Fancy Intense','Fancy Dark','Fancy','Fancy Light','Light')
+                          else if( _varientNameController.text=='Emerald')
+                              reusablePopupmenu('Very Dark','Dark', 'Medium Dark','Medium','Medium Light','Light','Other')
+                              else if( _varientNameController.text=='Padmaraga')
+                                  reusablePopupmenu('Light','Medium', 'Dark','....','....','....','....')
+                                else if( _varientNameController.text=='Garnet')
+                                    reusablePopupmenu('Rose','Topaz', 'Green','Orange','White','Amethyst','Other')
+                                  else if( _varientNameController.text=='Cats Eye')
+                                      reusablePopupmenu('Clear','Blue', 'Green','Orange','Red','Black','Other')
+                                    else if( _varientNameController.text=='Star Sapphire')
+                                        reusablePopupmenu('Blue','Ruby', 'Emerald','Yellow','Pink','Orange','Other')
                         ],
                       ),
                       const SizedBox(
@@ -165,27 +237,110 @@ void initState() {
                             icon: Icon(Icons.more_vert),
                             itemBuilder: (BuildContext context) => <PopupMenuEntry>[
                               const PopupMenuItem(
-                                value: 'oval',
+                                value: 'Marqulse',
                                 child: ListTile(
 
-                                  title: Text('oval'),
+                                  title: Text('Marqulse'),
                                 ),
                               ),
                               const PopupMenuItem(
-                                value: 'heart',
+                                value: 'Round',
                                 child: ListTile(
 
-                                  title: Text('heart'),
+                                  title: Text('Round'),
                                 ),
                               ),
                               const PopupMenuItem(
-                                value: 'round',
+                                value: 'Trilliant',
                                 child: ListTile(
 
-                                  title: Text('round'),
+                                  title: Text('Trilliant'),
                                 ),
                               ),
+                              const PopupMenuItem(
+                                value: 'Oval',
+                                child: ListTile(
 
+                                  title: Text('Oval'),
+                                ),
+                              ),
+                              const PopupMenuItem(
+                                value: 'Pear',
+                                child: ListTile(
+
+                                  title: Text('Pear'),
+                                ),
+                              ),
+                              const PopupMenuItem(
+                                value: 'Square',
+                                child: ListTile(
+
+                                  title: Text('Square'),
+                                ),
+                              ),
+                              const PopupMenuItem(
+                                value: 'Octagon',
+                                child: ListTile(
+
+                                  title: Text('Octagon'),
+                                ),
+                              ),
+                              const PopupMenuItem(
+                                value: 'Emerald Cut',
+                                child: ListTile(
+
+                                  title: Text('Emerald Cut'),
+                                ),
+                              ),
+                              const PopupMenuItem(
+                                value: 'Baguette',
+                                child: ListTile(
+
+                                  title: Text('Baguette'),
+                                ),
+                              ),
+                              const PopupMenuItem(
+                                value: 'Tapered Baguette',
+                                child: ListTile(
+
+                                  title: Text('Tapered Baguette'),
+                                ),
+                              ),
+                              const PopupMenuItem(
+                                value: 'Antique Cushion',
+                                child: ListTile(
+
+                                  title: Text('Antique Cushion'),
+                                ),
+                              ),
+                              const PopupMenuItem(
+                                value: 'Heart Shape',
+                                child: ListTile(
+
+                                  title: Text('Heart Shape'),
+                                ),
+                              ),
+                              const PopupMenuItem(
+                                value: 'Briolette',
+                                child: ListTile(
+
+                                  title: Text('Briolette'),
+                                ),
+                              ),
+                              const PopupMenuItem(
+                                value: 'Cabochon',
+                                child: ListTile(
+
+                                  title: Text('Cabochon'),
+                                ),
+                              ),
+                              const PopupMenuItem(
+                                value: 'Princess Cut',
+                                child: ListTile(
+
+                                  title: Text('Princess Cut'),
+                                ),
+                              ),
                             ],
                           ),
 
