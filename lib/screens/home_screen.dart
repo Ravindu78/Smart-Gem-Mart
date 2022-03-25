@@ -1,7 +1,7 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:smart_gem_mart/screens/knowleadgepanel_screen.dart';
+import 'package:smart_gem_mart/knowleadge_panel/knowleadgepanel_screen.dart';
 import 'package:smart_gem_mart/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_gem_mart/screens/posts.dart';
@@ -188,22 +188,14 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: ListTile(
                         title: Text('Knowleadge Panel'),
                         leading: Icon(Icons.book, color: Colors.purple,),
-                        onTap: ()=> Navigator.of(context).push(
-                            MaterialPageRoute(
-                              //passing the values of the gem products to the product detils page
-                                builder: (context) => Education())),
+                        // onTap: ()=> Navigator.of(context).push(
+                        //     MaterialPageRoute(
+                        //       //passing the values of the gem products to the product detils page
+                        //         builder: (context) => Caro)),
                       ),
 
                     ),
                     Divider(),
-                    InkWell(
-                      onTap: (){},
-                      child: ListTile(
-                        title: Text('Settings'),
-                        leading: Icon(Icons.settings, color: Colors.purple,),
-
-                      ),
-                    ),
                     InkWell(
                       onTap: ()=> Navigator.of(context).push(
                           MaterialPageRoute(
@@ -215,6 +207,15 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
 
                     ),
+                    InkWell(
+                      onTap: (){},
+                      child: ListTile(
+                        title: Text('Log Out'),
+                        leading: Icon(Icons.settings, color: Colors.purple,),
+
+                      ),
+                    ),
+
                   ],
                 ),
               ),
@@ -231,9 +232,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
           //=====body testing button remove this====
           Posts(),
-          Education(),
+          Posts(),
+          KnowledgePanel(),
 
-          Education(),
 
         ],
       ),
