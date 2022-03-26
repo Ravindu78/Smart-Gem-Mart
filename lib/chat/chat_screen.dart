@@ -41,8 +41,9 @@ class _ChatScreenState extends State<ChatScreen> {
                       children: snapshot.data!.docs.map((DocumentSnapshot document) {
                         Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
                         return ListTile(
-                          title: Text(data['sender']),
-                          subtitle: Text(data['text']),
+                          //title: Text(data['sender']),
+                          subtitle: widget.email==data['sender']?Text(data['text'],)
+                              :Text(data['text'],textAlign: TextAlign.right,)
                         );
                       }).toList(),
                     );

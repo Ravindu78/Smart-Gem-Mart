@@ -45,6 +45,7 @@ dependencies:
   geolocator: ^8.2.0
   qr_code_scanner: ^0.7.0
   carousel_pro: ^1.0.0
+  search_page: ^2.0.0+1
   dependencies:
 
 

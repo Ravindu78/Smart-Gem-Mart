@@ -1,8 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:search_page/search_page.dart';
 import 'package:smart_gem_mart/product_details.dart';
 
 import '../product_details.dart';
+import '../reusable_widgets/addpostdetails.dart';
 
 class Products extends StatefulWidget {
   const Products({Key? key}) : super(key: key);
@@ -12,8 +14,9 @@ class Products extends StatefulWidget {
 }
 
 class _ProductsState extends State<Products> {
-
-
+  List<AddPost> allitems = [];
+  List<AddPost> _products = [];
+  List<AddPost> prod = [];
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +41,7 @@ class _ProductsState extends State<Products> {
                 if (snapshot.hasData) {
                   print('has data');
                   return Container(
-                    height: 545.00,
+                    height: MediaQuery.of(context).size.height/1.75,
                     color: Colors.white,
                     child: GridView.builder(
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -59,6 +62,20 @@ class _ProductsState extends State<Products> {
                         String phoneNo=category['phone'];
                         String  email=category['email'];
                         GeoPoint  location=category['location'];
+
+                        allitems = [
+                           for (var i = 0; i < snapshot.data!.docs.length; i++)
+                           AddPost(varient,color,shape,weight,descrip,price,email,imgurl,location,phoneNo,'filepath')
+                        ];
+
+                        if (_products.length == snapshot.data!.docs.length &&
+                            prod.length == snapshot.data!.docs.length) {
+                          print('List fulled');
+                        } else {
+                          _products.add(allitems[index]);
+                          prod.add(allitems[index]);
+                          print('items added to search list');
+                        }
 
 
                         return Container(
@@ -134,7 +151,88 @@ class _ProductsState extends State<Products> {
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        heroTag: null,
+        tooltip: 'Search people',
+        onPressed: () => showSearch(
+          context: context,
+          delegate: SearchPage<AddPost>(
+            onQueryUpdate: (s) => print(s),
+            items: _products,
+            searchLabel: 'Search people',
+            suggestion: Center(
+              child: Text('Filter people by name, surname or age'),
+            ),
+            failure: Center(
+              child: Text('No person found :('),
+            ),
+            filter: (prod) => [
+              prod.varient,
+              prod.color,
+              prod.shape,
 
+            ],
+            builder: (prod) => Container(
+                height: MediaQuery.of(context).size.height/6,
+                child: Card(
+                  elevation: 5,
+                  child: InkWell(
+                    onTap: ()=> Navigator.of(context).push(
+                        MaterialPageRoute(
+                          //passing the values of the gem products to the product detils page
+                            builder: (context) => ProductDetails(
+                                prod.imgUrl,prod.price,prod.description,prod.varient,prod.color,prod.shape,prod.weight,prod.phone,prod.email,prod.location
+                            ))),
+                    // child: Column(
+                    //
+                    //   crossAxisAlignment: CrossAxisAlignment.center,
+                    //   children: <Widget>[
+                    //     Container(
+                    //       margin: EdgeInsets.only(
+                    //           top: 5, right: 5, left: 5),
+                    //       width: 100,
+                    //       height: 80,
+                    //       child: Image.network(
+                    //         category['imgUrl'],
+                    //         fit: BoxFit.fill,
+                    //       ),
+                    //     ),
+                    //     Padding(
+                    //       padding:  EdgeInsets.only(
+                    //           top: 5, bottom: 5),
+                    //       child: Text(
+                    //         category['varient'],
+                    //         textAlign: TextAlign.center,
+                    //         style: TextStyle(),
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
+                    child: GridTile(
+                      footer: Container(
+                        height: 40,
+                        color: Colors.white60,
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Text(prod.varient, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),),
+                            ),
+                            Text(prod.price, style: TextStyle(color: Colors.purple, fontWeight: FontWeight.bold),)
+                          ],
+                        ),
+                      ),
+                      child: Image.network(
+
+                        prod.imgUrl,
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                  ),
+                ),),
+          ),
+        ),
+        child: Icon(Icons.search),
+      ),
     );
   }
   }
