@@ -79,6 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
     child: Scaffold(
       appBar: AppBar(
 
+
         //centerTitle: true,
         //leading: IconButton(
          // icon: Icon(Icons.menu),
@@ -87,10 +88,12 @@ class _HomeScreenState extends State<HomeScreen> {
          // },
        // ),
         actions: [
-          IconButton(
-            icon: Icon(Icons.search),
-            onPressed: () {},
-          )
+          
+
+          // IconButton(
+          //   icon: Icon(Icons.search),
+          //   onPressed: () {},
+          // )
         ],
         //backgroundColor: Colors.purple,
         flexibleSpace: Container(
