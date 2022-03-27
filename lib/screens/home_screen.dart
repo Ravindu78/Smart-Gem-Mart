@@ -14,6 +14,7 @@ import 'package:smart_gem_mart/globals.dart' as globals;
 
 
 import '../reusable_widgets/reusable_widget.dart';
+import 'addpost_screen.dart';
 class HomeScreen extends StatefulWidget {
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -77,8 +78,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
     length: 4,
     child: Scaffold(
-      appBar: AppBar(
 
+      appBar: AppBar(
 
         //centerTitle: true,
         //leading: IconButton(
@@ -88,12 +89,16 @@ class _HomeScreenState extends State<HomeScreen> {
          // },
        // ),
         actions: [
-          
 
-          // IconButton(
-          //   icon: Icon(Icons.search),
-          //   onPressed: () {},
-          // )
+          IconButton(
+
+            icon: Icon(Icons.add),
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => AddPostScreen()));
+            },
+          )
+
         ],
         //backgroundColor: Colors.purple,
         flexibleSpace: Container(

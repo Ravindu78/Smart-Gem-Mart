@@ -133,15 +133,15 @@ class _PostsState extends State<Posts> {
 
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-
-        onPressed: (){
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => AddPostScreen()));
-        },
-        child: Icon(Icons.add),backgroundColor: Colors.purpleAccent,
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      // floatingActionButton: FloatingActionButton(
+      //
+      //   onPressed: (){
+      //     Navigator.push(context,
+      //         MaterialPageRoute(builder: (context) => AddPostScreen()));
+      //   },
+      //   child: Icon(Icons.add),backgroundColor: Colors.purpleAccent,
+      // ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 }
