@@ -41,7 +41,7 @@ class _ProductsState extends State<Products> {
                 if (snapshot.hasData) {
                   print('has data');
                   return Container(
-                    height: MediaQuery.of(context).size.height/1.75,
+                    height: MediaQuery.of(context).size.height/1.77,
                     color: Colors.white,
                     child: GridView.builder(
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -152,6 +152,7 @@ class _ProductsState extends State<Products> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.deepPurpleAccent,
         heroTag: null,
         tooltip: 'Search people',
         onPressed: () => showSearch(
