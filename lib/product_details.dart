@@ -1,9 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:payhere_mobilesdk_flutter/payhere_mobilesdk_flutter.dart';
 import 'package:smart_gem_mart/chat/chat_screen.dart';
 import 'package:smart_gem_mart/utils/color_utils.dart';
-
+import 'package:smart_gem_mart/globals.dart' as globals;
 class ProductDetails extends StatefulWidget {
   String imgurl;
   String price;
@@ -36,7 +37,130 @@ class _ProductDetailsState extends State<ProductDetails> {
   String  email;
   GeoPoint location;
   _ProductDetailsState(this.imgurl,this.price,this.descrip,this.varient,this.color,this.shape,this.weight,this.phoneNo,this.email,this.location);
+  int lastOrderNumber=0;
+  String orderId='';
+  String buyerName='';
+  String buyerNumber='';
 
+
+  @override
+  void initState() {
+    super.initState();
+    getUserDetails();
+    getOrderNumberNIncrease ();
+  }
+  void getUserDetails () async
+  {
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(globals.userEmail)
+        .get()
+        .then((DocumentSnapshot documentSnapshot) {
+      if (documentSnapshot.exists) {
+
+          buyerName= '${documentSnapshot['name']}';
+          buyerNumber= '${documentSnapshot['number']}';
+
+      } else {
+        print('Document does not exist on the database');
+      }
+
+    });
+  }
+
+  void PaywithPayHere()
+  {
+    Map paymentObject = {
+      "sandbox": true,                 // true if using Sandbox Merchant ID
+      "merchant_id": "1211149",        // Replace your Merchant ID
+      "notify_url": "http://sample.com/notify",
+      "order_id": orderId,
+      "items": "Hello from Flutter!",
+      "amount": price,
+      "currency": "LKR",
+      "first_name": buyerName,
+      "last_name": "",
+      "email": globals.userEmail,
+      "phone": buyerNumber,
+      "address": "No.1, Galle Road",
+      "city": "Colombo",
+      "country": "Sri Lanka",
+      "delivery_address": "No. 46, Galle road, Kalutara South",
+      "delivery_city": "Kalutara",
+      "delivery_country": "Sri Lanka",
+      "custom_1": "",
+      "custom_2": ""
+    };
+
+    PayHere.startPayment(
+        paymentObject,
+            (paymentId) {
+          print("One Time Payment Success. Payment Id: $paymentId");
+          addOrderDetails();
+          updateOrderNumber ();
+        },
+            (error) {
+          print("One Time Payment Failed. Error: $error");
+        },
+            () {
+          print("One Time Payment Dismissed");
+        }
+    );
+  }
+
+
+  void getOrderNumberNIncrease () async
+  {
+    await FirebaseFirestore.instance
+        .collection('getOrderCount')
+        .doc('orderCount')
+        .get()
+        .then((DocumentSnapshot ordrNo) {
+      if (ordrNo.exists) {
+        lastOrderNumber= ordrNo['lastOrderNumber'];
+        lastOrderNumber=lastOrderNumber+1;
+        orderId='OID${lastOrderNumber}';
+
+        print('Document data: ${ordrNo.data()}');
+      } else {
+        print('Document does not exist on the database');
+      }
+    });
+  }
+
+
+  void updateOrderNumber () async
+  {
+    FirebaseFirestore.instance.collection('getOrderCount').doc('orderCount')
+        .update({'lastOrderNumber': FieldValue.increment(1)
+
+
+        })
+        .then((value) => print("orderNumber Updated"))
+        .catchError((error) => print("Failed to update Order Number: $error"));
+  }
+
+
+  void addOrderDetails(){
+    FirebaseFirestore.instance.collection('orders').doc(orderId)
+        .set({
+      'orderId': orderId,
+      'Price': price,
+      'Description' :descrip,
+      'Varient': varient,
+      'Color': color,
+      'Shape' :shape,
+      'Weight': weight,
+      'SellerPhoneNo' :phoneNo,
+      'SellerEmail' : email,
+      'BuyerEmail': globals.userEmail,
+      'BuyerNumber': buyerNumber,
+      'BuyerName': buyerName,
+      'Location' :location,
+    })
+        .then((value) => print("Order details added"))
+        .catchError((error) => print("Failed to add order details: $error"));
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -107,18 +231,34 @@ class _ProductDetailsState extends State<ProductDetails> {
               Expanded(
                 child: MaterialButton(
                     onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) =>
-                            ChatScreen('ravindu54@gmail.com')));
+                      // Navigator.of(context).push(MaterialPageRoute(
+                      //   builder: (context) =>
+                      //       ChatScreen(email)));
+                      PaywithPayHere();
                     },
                     color: Colors.purpleAccent,
                     textColor: Colors.white,
                     elevation: 0.2,
-                    child: Text("Chat")
+                    child: Text("Buy Now")
                 ),
               ),
-              IconButton(onPressed: () {},
-                icon: Icon(Icons.favorite_border, color: Colors.deepPurple,),),
+              // Expanded( child: MaterialButton(
+              //     onPressed: () {
+              //       Navigator.of(context).push(MaterialPageRoute(
+              //           builder: (context) =>
+              //               ChatScreen('ravindu54@gmail.com')));
+              //     },
+              //     color: Colors.purpleAccent,
+              //     textColor: Colors.white,
+              //     elevation: 0.2,
+              //     child: Text("Chat")
+              // ),),
+              IconButton(onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) =>
+                        ChatScreen('ravindu54@gmail.com')));
+              },
+                icon: Icon(Icons.message_rounded, color: Colors.deepPurple,),),
             ],
           ),
 

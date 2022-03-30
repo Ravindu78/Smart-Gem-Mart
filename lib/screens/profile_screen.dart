@@ -17,6 +17,7 @@ class _ProfileState extends State<Profile> {
   late String _emailController='';
   String name='';
 
+
   void initState() {
     super.initState();
     var currentUser = FirebaseAuth.instance.currentUser;
@@ -27,6 +28,8 @@ class _ProfileState extends State<Profile> {
       print(currentUser.email);
     }
   }
+
+
 
   CollectionReference users = FirebaseFirestore.instance.collection('users');
 
@@ -191,22 +194,6 @@ class _ProfileState extends State<Profile> {
                                 ],
                               ),
                             ),
-
-
-
-                            // Container(
-                            //   alignment: Alignment.centerLeft,
-                            //   child: Row(
-                            //
-                            //     children: [ SizedBox(
-                            //       width: 252,
-                            //     ),
-                            //       IconButton(onPressed: (){}, icon: const Icon(Icons.edit),)
-                            //     ],
-                            //
-                            //   ),
-                            // ),
-                            // ListTile(leading: Icon(Icons.person),title: Text("title"),subtitle: Text("subtitle"),trailing: Icon(Icons.arrow_forward),),
                           ],
 
                         ),

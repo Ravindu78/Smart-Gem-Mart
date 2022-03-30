@@ -46,6 +46,7 @@ dependencies:
   qr_code_scanner: ^0.7.0
   carousel_pro: ^1.0.0
   search_page: ^2.0.0+1
+  payhere_mobilesdk_flutter: ^2.0.0
   dependencies:
 
 
@@ -81,7 +82,6 @@ flutter:
     - assets/images/categories/ruby.png
     - assets/images/categories/star.png
     - assets/images/categories/yellow.png
-    - assets/images/categories/c1.png
     - assets/images/categories/profile.png
 
 
