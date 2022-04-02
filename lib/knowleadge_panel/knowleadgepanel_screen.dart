@@ -1,4 +1,5 @@
 import 'package:carousel_pro/carousel_pro.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_gem_mart/knowleadge_panel/labs/Laboratory_screen.dart';
 
@@ -10,11 +11,35 @@ class KnowledgePanel extends StatefulWidget {
 }
 
 class _KnowledgePanelState extends State<KnowledgePanel> {
+
+  List<String> images = [];
+  bool carouselSet = false;
+
+  Future<void> getImages() async{
+    FirebaseFirestore.instance.collection('newspanel').get()
+        .then((QuerySnapshot querySnapshot) {
+      querySnapshot.docs.forEach((doc) {
+        print(doc["imgUrl"]);
+        images.add((doc["imgUrl"]));
+      });
+      setState(() {
+        carouselSet = true;
+      });
+    });
+
+  }
+
+  @override
+  void initState() {
+    getImages();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: SafeArea(
+
 
         child: Column(
 
@@ -22,13 +47,15 @@ class _KnowledgePanelState extends State<KnowledgePanel> {
           children: [
 
             Center(
+
               child: Container(
                   height: 200.0,
                   width: 390.0,
-                  child: Carousel(
+                  child: (carouselSet)? Carousel(
                     images: [
-                      NetworkImage('https://cdn-images-1.medium.com/max/2000/1*GqdzzfB_BHorv7V2NV7Jgg.jpeg'),
-                      NetworkImage('https://cdn-images-1.medium.com/max/2000/1*wnIEgP1gNMrK5gZU7QS0-A.jpeg'),
+                      NetworkImage(images[0]),
+                      NetworkImage(images[1]),
+                      NetworkImage(images[2]),
                     ],
                     dotSize: 4.0,
                     dotSpacing: 15.0,
@@ -36,11 +63,10 @@ class _KnowledgePanelState extends State<KnowledgePanel> {
                     indicatorBgPadding: 5.0,
                     dotBgColor: Colors.purple.withOpacity(0.5),
                     borderRadius: true,
+                  ): Center(
+                    child: CircularProgressIndicator(),
                   ),
-
               ),
-
-
             ),
           Container(
             child: ListTile(
