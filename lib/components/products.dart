@@ -26,7 +26,10 @@ class _ProductsState extends State<Products> {
           children: [
             StreamBuilder(
               stream: FirebaseFirestore.instance
-                  .collection("Advertisment").orderBy('time',descending: true)
+                  .collection("Advertisment")
+                  .orderBy('time', descending: true)
+                  .where('publish', isEqualTo: 'true')
+
                   .snapshots(),
               builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
                 if (snapshot.hasError) {
@@ -41,7 +44,7 @@ class _ProductsState extends State<Products> {
                 if (snapshot.hasData) {
                   print('has data');
                   return Container(
-                    height: MediaQuery.of(context).size.height/1.77,
+                    height: MediaQuery.of(context).size.height / 1.77,
                     color: Colors.white,
                     child: GridView.builder(
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -51,21 +54,32 @@ class _ProductsState extends State<Products> {
                       // ignore: missing_return
                       itemBuilder: (BuildContext context, index) {
                         QueryDocumentSnapshot category =
-                        snapshot.data!.docs[index];
-                        String imgurl=category['imgUrl'];
-                        String price=category['price'];
-                        String descrip=category['description'];
-                        String varient=category['varient'];
-                        String color=category['color'];
-                        String shape=category['shape'];
-                        String weight=category['weight'];
-                        String phoneNo=category['phone'];
-                        String  email=category['email'];
-                        GeoPoint  location=category['location'];
+                            snapshot.data!.docs[index];
+                        String imgurl = category['imgUrl'];
+                        String price = category['price'];
+                        String descrip = category['description'];
+                        String varient = category['varient'];
+                        String color = category['color'];
+                        String shape = category['shape'];
+                        String weight = category['weight'];
+                        String phoneNo = category['phone'];
+                        String email = category['email'];
+                        GeoPoint location = category['location'];
 
                         allitems = [
-                           for (var i = 0; i < snapshot.data!.docs.length; i++)
-                           AddPost(varient,color,shape,weight,descrip,price,email,imgurl,location,phoneNo,'filepath')
+                          for (var i = 0; i < snapshot.data!.docs.length; i++)
+                            AddPost(
+                                varient,
+                                color,
+                                shape,
+                                weight,
+                                descrip,
+                                price,
+                                email,
+                                imgurl,
+                                location,
+                                phoneNo,
+                                'filepath')
                         ];
 
                         if (_products.length == snapshot.data!.docs.length &&
@@ -77,63 +91,80 @@ class _ProductsState extends State<Products> {
                           print('items added to search list');
                         }
 
-
                         return Container(
                           child: Card(
                             elevation: 5,
                             child: InkWell(
-                                onTap: ()=> Navigator.of(context).push(
-                                    MaterialPageRoute(
+                              onTap: () => Navigator.of(context).push(
+                                  MaterialPageRoute(
                                       //passing the values of the gem products to the product detils page
-                                        builder: (context) => ProductDetails(
-                                          imgurl,price,descrip,varient,color,shape,weight,phoneNo,email,location
-                                        ))),
-                                // child: Column(
-                                //
-                                //   crossAxisAlignment: CrossAxisAlignment.center,
-                                //   children: <Widget>[
-                                //     Container(
-                                //       margin: EdgeInsets.only(
-                                //           top: 5, right: 5, left: 5),
-                                //       width: 100,
-                                //       height: 80,
-                                //       child: Image.network(
-                                //         category['imgUrl'],
-                                //         fit: BoxFit.fill,
-                                //       ),
-                                //     ),
-                                //     Padding(
-                                //       padding:  EdgeInsets.only(
-                                //           top: 5, bottom: 5),
-                                //       child: Text(
-                                //         category['varient'],
-                                //         textAlign: TextAlign.center,
-                                //         style: TextStyle(),
-                                //       ),
-                                //     ),
-                                //   ],
-                                // ),
+                                      builder: (context) => ProductDetails(
+                                          imgurl,
+                                          price,
+                                          descrip,
+                                          varient,
+                                          color,
+                                          shape,
+                                          weight,
+                                          phoneNo,
+                                          email,
+                                          location))),
+                              // child: Column(
+                              //
+                              //   crossAxisAlignment: CrossAxisAlignment.center,
+                              //   children: <Widget>[
+                              //     Container(
+                              //       margin: EdgeInsets.only(
+                              //           top: 5, right: 5, left: 5),
+                              //       width: 100,
+                              //       height: 80,
+                              //       child: Image.network(
+                              //         category['imgUrl'],
+                              //         fit: BoxFit.fill,
+                              //       ),
+                              //     ),
+                              //     Padding(
+                              //       padding:  EdgeInsets.only(
+                              //           top: 5, bottom: 5),
+                              //       child: Text(
+                              //         category['varient'],
+                              //         textAlign: TextAlign.center,
+                              //         style: TextStyle(),
+                              //       ),
+                              //     ),
+                              //   ],
+                              // ),
                               child: GridTile(
-                                  footer: Container(
-                                    height: 40,
-                                    color: Colors.white60,
-                                    child: Row(
-                                      children: [
-                                        Expanded(
-                                          child: Text(varient, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),),
+                                footer: Container(
+                                  height: 40,
+                                  color: Colors.white60,
+                                  child: Row(
+                                    children: [
+                                      Expanded(
+                                        child: Text(
+                                          varient,
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 16.0),
                                         ),
-                                        Text(price, style: TextStyle(color: Colors.purple, fontWeight: FontWeight.bold),)
-                                      ],
-                                    ),
+                                      ),
+                                      Text(
+                                        price,
+                                        style: TextStyle(
+                                            color: Colors.purple,
+                                            fontWeight: FontWeight.bold),
+                                      )
+                                    ],
                                   ),
-                                      child: Image.network(
-
-                                category['imgUrl'],
-                                fit: BoxFit.fill,
-                               ),
+                                ),
+                                child: Image.network(
+                                  category['imgUrl'],
+                                  fit: BoxFit.fill,
+                                ),
                               ),
+                            ),
                           ),
-                          ));
+                        );
                       },
                     ),
                   );
@@ -171,70 +202,84 @@ class _ProductsState extends State<Products> {
               prod.varient,
               prod.color,
               prod.shape,
-
             ],
             builder: (prod) => Container(
-                height: MediaQuery.of(context).size.height/6,
-                child: Card(
-                  elevation: 5,
-                  child: InkWell(
-                    onTap: ()=> Navigator.of(context).push(
-                        MaterialPageRoute(
-                          //passing the values of the gem products to the product detils page
-                            builder: (context) => ProductDetails(
-                                prod.imgUrl,prod.price,prod.description,prod.varient,prod.color,prod.shape,prod.weight,prod.phone,prod.email,prod.location
-                            ))),
-                    // child: Column(
-                    //
-                    //   crossAxisAlignment: CrossAxisAlignment.center,
-                    //   children: <Widget>[
-                    //     Container(
-                    //       margin: EdgeInsets.only(
-                    //           top: 5, right: 5, left: 5),
-                    //       width: 100,
-                    //       height: 80,
-                    //       child: Image.network(
-                    //         category['imgUrl'],
-                    //         fit: BoxFit.fill,
-                    //       ),
-                    //     ),
-                    //     Padding(
-                    //       padding:  EdgeInsets.only(
-                    //           top: 5, bottom: 5),
-                    //       child: Text(
-                    //         category['varient'],
-                    //         textAlign: TextAlign.center,
-                    //         style: TextStyle(),
-                    //       ),
-                    //     ),
-                    //   ],
-                    // ),
-                    child: GridTile(
-                      footer: Container(
-                        height: 40,
-                        color: Colors.white60,
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: Text(prod.varient, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),),
+              height: MediaQuery.of(context).size.height / 6,
+              child: Card(
+                elevation: 5,
+                child: InkWell(
+                  onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                      //passing the values of the gem products to the product detils page
+                      builder: (context) => ProductDetails(
+                          prod.imgUrl,
+                          prod.price,
+                          prod.description,
+                          prod.varient,
+                          prod.color,
+                          prod.shape,
+                          prod.weight,
+                          prod.phone,
+                          prod.email,
+                          prod.location))),
+                  // child: Column(
+                  //
+                  //   crossAxisAlignment: CrossAxisAlignment.center,
+                  //   children: <Widget>[
+                  //     Container(
+                  //       margin: EdgeInsets.only(
+                  //           top: 5, right: 5, left: 5),
+                  //       width: 100,
+                  //       height: 80,
+                  //       child: Image.network(
+                  //         category['imgUrl'],
+                  //         fit: BoxFit.fill,
+                  //       ),
+                  //     ),
+                  //     Padding(
+                  //       padding:  EdgeInsets.only(
+                  //           top: 5, bottom: 5),
+                  //       child: Text(
+                  //         category['varient'],
+                  //         textAlign: TextAlign.center,
+                  //         style: TextStyle(),
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
+                  child: GridTile(
+                    footer: Container(
+                      height: 40,
+                      color: Colors.white60,
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              prod.varient,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 16.0),
                             ),
-                            Text(prod.price, style: TextStyle(color: Colors.purple, fontWeight: FontWeight.bold),)
-                          ],
-                        ),
-                      ),
-                      child: Image.network(
-
-                        prod.imgUrl,
-                        fit: BoxFit.fill,
+                          ),
+                          Text(
+                            prod.price,
+                            style: TextStyle(
+                                color: Colors.purple,
+                                fontWeight: FontWeight.bold),
+                          )
+                        ],
                       ),
                     ),
+                    child: Image.network(
+                      prod.imgUrl,
+                      fit: BoxFit.fill,
+                    ),
                   ),
-                ),),
+                ),
+              ),
+            ),
           ),
         ),
         child: Icon(Icons.search),
       ),
     );
   }
-  }
-
+}

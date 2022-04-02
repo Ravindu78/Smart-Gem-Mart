@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_gem_mart/globals.dart' as globals;
 import 'package:smart_gem_mart/chat/chat_screen.dart';
@@ -36,7 +37,26 @@ class _MessagesScreenState extends State<MessagesScreen> {
                       Navigator.push(context, MaterialPageRoute(builder: (context) => ChatScreen(document.id)));
                     },
                     child: ListTile(
-                      title: Text(document.id),
+                      title: FutureBuilder<DocumentSnapshot>(
+                        future: FirebaseFirestore.instance.collection('users').doc(document.id).get(),
+                        builder: (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+
+                          if (snapshot.hasError) {
+                            return Text("Something went wrong");
+                          }
+
+                          if (snapshot.hasData && !snapshot.data!.exists) {
+                            return Text("Document does not exist");
+                          }
+
+                          if (snapshot.connectionState == ConnectionState.done) {
+                            Map<String, dynamic> data = snapshot.data!.data() as Map<String, dynamic>;
+                            return Text("${data['name']}");
+                          }
+
+                          return Text("");
+                        },
+                      ),
                       //subtitle: Text(data['company']),
                     ),
                   );
@@ -48,4 +68,20 @@ class _MessagesScreenState extends State<MessagesScreen> {
       ),
     );
   }
+
+  Future<String?> getName(String id) async {
+    String name = "";
+    FirebaseFirestore.instance
+        .collection('users')
+        .doc(id)
+        .get()
+        .then((DocumentSnapshot documentSnapshot) {
+      if (documentSnapshot.exists) {
+        name = documentSnapshot.get('name');
+        print('Document exists on the database');
+      }
+    });
+    return name;
+  }
+
 }

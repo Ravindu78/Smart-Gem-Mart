@@ -19,7 +19,7 @@ class AddPost {
   String phone;
   String filePath;
 
-  AddPost(this.varient,this.color,this.shape,this.weight,this.description,this.price,this.email,this.imgUrl,this.location,this.phone,this.filePath);
+  AddPost(this.varient,this.color,this.shape,this.weight,this.description,this.price,this.email,this.imgUrl,this.location,this.phone,this.filePath,);
 
   CollectionReference advertisment = FirebaseFirestore.instance.collection('Advertisment');
 
@@ -41,6 +41,7 @@ class AddPost {
       'location':location,
       'phone':phone,
       'time':DateTime.now(),
+      'publish': 'false'
 
     })
         .then((value) {

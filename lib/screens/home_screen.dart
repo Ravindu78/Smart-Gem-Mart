@@ -157,7 +157,16 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Column(
                   children: [
                     InkWell(
-                      onTap: (){},
+                      onTap: ()=> Navigator.of(context).push(
+                          MaterialPageRoute(
+                            //passing the values of the gem products to the product detils page
+                              builder: (context) => Profile())),
+                      child: ListTile(
+                        title: Text('My Profile'),
+                        leading: Icon(Icons.person, color: Colors.purple,),
+                      ),
+                    ),
+                    InkWell(
                       child: ListTile(
                         title: Text('Home Page'),
                         leading: Icon(Icons.home, color: Colors.purple,),
@@ -167,15 +176,27 @@ class _HomeScreenState extends State<HomeScreen> {
                                 builder: (context) => HomeScreen())),),
                     ),
                     InkWell(
-                      onTap: (){},
+
                       child: ListTile(
-                        title: Text('My Profile'),
-                        leading: Icon(Icons.person, color: Colors.purple,),
+                        title: Text('Knowleadge Panel'),
+                        leading: Icon(Icons.book, color: Colors.purple,),
                         onTap: ()=> Navigator.of(context).push(
                             MaterialPageRoute(
                               //passing the values of the gem products to the product detils page
-                                builder: (context) => Profile())),),
+                                builder: (context) => KnowledgePanel())),
                       ),
+
+                    ),
+                    InkWell(
+                      child: ListTile(
+                        title: Text('Chats'),
+                        leading: Icon(Icons.message_rounded, color: Colors.purple,),
+                        onTap: ()=> Navigator.of(context).push(
+                            MaterialPageRoute(
+                              //passing the values of the gem products to the product detils page
+                                builder: (context) => PriceChecker())),),
+                    ),
+
 
                     InkWell(
                       onTap: (){
@@ -187,25 +208,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         leading: Icon(Icons.qr_code_scanner, color: Colors.purple,),
                       ),
                     ),
-                    InkWell(
-                      onTap: (){},
-                      child: ListTile(
-                        title: Text('Barcode Scanner'),
-                        leading: Icon(Icons.code, color: Colors.purple,),
-                      ),
-                    ),
-                    InkWell(
 
-                      child: ListTile(
-                        title: Text('Knowleadge Panel'),
-                        leading: Icon(Icons.book, color: Colors.purple,),
-                        // onTap: ()=> Navigator.of(context).push(
-                        //     MaterialPageRoute(
-                        //       //passing the values of the gem products to the product detils page
-                        //         builder: (context) => Caro)),
-                      ),
 
-                    ),
                     Divider(),
                     InkWell(
                       onTap: ()=> Navigator.of(context).push(
