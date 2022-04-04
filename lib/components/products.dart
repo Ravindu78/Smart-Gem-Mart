@@ -109,31 +109,7 @@ class _ProductsState extends State<Products> {
                                           phoneNo,
                                           email,
                                           location))),
-                              // child: Column(
-                              //
-                              //   crossAxisAlignment: CrossAxisAlignment.center,
-                              //   children: <Widget>[
-                              //     Container(
-                              //       margin: EdgeInsets.only(
-                              //           top: 5, right: 5, left: 5),
-                              //       width: 100,
-                              //       height: 80,
-                              //       child: Image.network(
-                              //         category['imgUrl'],
-                              //         fit: BoxFit.fill,
-                              //       ),
-                              //     ),
-                              //     Padding(
-                              //       padding:  EdgeInsets.only(
-                              //           top: 5, bottom: 5),
-                              //       child: Text(
-                              //         category['varient'],
-                              //         textAlign: TextAlign.center,
-                              //         style: TextStyle(),
-                              //       ),
-                              //     ),
-                              //   ],
-                              // ),
+
                               child: GridTile(
                                 footer: Container(
                                   height: 40,
@@ -221,31 +197,7 @@ class _ProductsState extends State<Products> {
                           prod.phone,
                           prod.email,
                           prod.location))),
-                  // child: Column(
-                  //
-                  //   crossAxisAlignment: CrossAxisAlignment.center,
-                  //   children: <Widget>[
-                  //     Container(
-                  //       margin: EdgeInsets.only(
-                  //           top: 5, right: 5, left: 5),
-                  //       width: 100,
-                  //       height: 80,
-                  //       child: Image.network(
-                  //         category['imgUrl'],
-                  //         fit: BoxFit.fill,
-                  //       ),
-                  //     ),
-                  //     Padding(
-                  //       padding:  EdgeInsets.only(
-                  //           top: 5, bottom: 5),
-                  //       child: Text(
-                  //         category['varient'],
-                  //         textAlign: TextAlign.center,
-                  //         style: TextStyle(),
-                  //       ),
-                  //     ),
-                  //   ],
-                  // ),
+
                   child: GridTile(
                     footer: Container(
                       height: 40,

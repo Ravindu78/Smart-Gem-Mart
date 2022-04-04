@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import '../../utils/color_utils.dart';
 class LabDetails extends StatefulWidget {
   String labName;
   String address;
@@ -17,18 +19,22 @@ class _LabDetailsState extends State<LabDetails> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [hexStringToColor("CB2B93"),
+                hexStringToColor("9546C4"),
+                hexStringToColor("5E61F4")],
+              begin: Alignment.topCenter, end: Alignment.bottomCenter,
+            ),
+          ),
+        ),
         elevation: 0.2,
-        backgroundColor: Colors.deepPurple,
         title: InkWell(
             onTap: (){
               //  Navigator.push(context, MaterialPageRoute(builder: (context)=> new HomePage()));
             },
             child: Text("Advertisement Details")),
-        actions: [
-          new IconButton(onPressed:(){}, icon: Icon(Icons.search)
-          ),
-
-        ],
       ),
 
       body: Column(
@@ -70,14 +76,6 @@ class _LabDetailsState extends State<LabDetails> {
           Row(
             children: [
               //===== the size button
-              Expanded(
-                child: MaterialButton(onPressed: () {},
-                    color: Colors.red,
-                    textColor: Colors.white,
-                    elevation: 0.2,
-                    child: Text("Remove")
-                ),
-              ),
             ],
           ),
 

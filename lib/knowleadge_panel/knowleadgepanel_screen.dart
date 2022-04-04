@@ -68,7 +68,12 @@ class _KnowledgePanelState extends State<KnowledgePanel> {
                   ),
               ),
             ),
+          SizedBox(
+            height: 20,
+          ),
           Container(
+            height: 100,
+            color: Colors.deepPurple[100],
             child: ListTile(
               onTap: (){
                 Navigator.push<void>(
@@ -85,67 +90,37 @@ class _KnowledgePanelState extends State<KnowledgePanel> {
 
           ),
           ),
+            SizedBox(
+              height: 10,
+            ),
             Container(
+              height: 100,
+              color: Colors.pink[100],
               child: ListTile(
                 onTap: () {},
-                title: Text('NEWS PANEL'),
+                title: Text('Cources'),
                 subtitle: Text(
-                    'Latest News'
+                    'Courses and Deplomas'
                 ),
 
               ),
             ),
+            SizedBox(
+              height: 10,
+            ),
             Container(
+              height: 100,
+              color: Colors.deepPurple[100],
               child: ListTile(
                 onTap: () {},
-                title: Text('NEWS PANEL'),
+                title: Text('Cources'),
                 subtitle: Text(
-                    'Latest News'
+                    'Courses and Deplomas'
                 ),
 
               ),
             ),
-          // Container(
-          //   child: ListView(
-          // children: [
-          // Card(
-          //   child: ListTile(
-          //     onTap: () {},
-          //     title: Text('NEWS PANEL'),
-          //     subtitle: Text(
-          //         'Latest News'
-          //     ),
-          //
-          //   ),
-          // ),
-          //   Card(
-          //     child: ListTile(
-          //       onTap: () {
-          //         // Navigator.push<void>(
-          //         //   context,
-          //         //   MaterialPageRoute<void>(
-          //         //     builder: (BuildContext context) => const RecentLabs(),
-          //         //   ),
-          //         // );
-          //       },
-          //       title: Text('LABORATORIES'),
-          //       subtitle: Text(
-          //           'Gem Lab Services'
-          //       ),
-          //     ),
-          //   ),
-          //   Card(
-          //     child: ListTile(
-          //       onTap: () {},
-          //       title: Text('COURSES'),
-          //       subtitle: Text(
-          //           'Courses and Deplomas'
-          //       ),
-          //     ),
-          //   )
-          // ],
-          //   ),
-          // ),
+
 
           ],
 
