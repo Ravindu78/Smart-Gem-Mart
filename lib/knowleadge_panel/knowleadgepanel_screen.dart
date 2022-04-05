@@ -1,6 +1,7 @@
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:smart_gem_mart/knowleadge_panel/courses/recent_courses.dart';
 import 'package:smart_gem_mart/knowleadge_panel/labs/Laboratory_screen.dart';
 
 class KnowledgePanel extends StatefulWidget {
@@ -72,7 +73,7 @@ class _KnowledgePanelState extends State<KnowledgePanel> {
             height: 20,
           ),
           Container(
-            height: 100,
+            height: 110,
             color: Colors.deepPurple[100],
             child: ListTile(
               onTap: (){
@@ -94,10 +95,17 @@ class _KnowledgePanelState extends State<KnowledgePanel> {
               height: 10,
             ),
             Container(
-              height: 100,
+              height: 110,
               color: Colors.pink[100],
               child: ListTile(
-                onTap: () {},
+                onTap: () {
+                  Navigator.push<void>(
+                    context,
+                    MaterialPageRoute<void>(
+                      builder: (BuildContext context) => const Courses(),
+                    ),
+                  );
+                },
                 title: Text('Cources'),
                 subtitle: Text(
                     'Courses and Deplomas'
@@ -109,7 +117,7 @@ class _KnowledgePanelState extends State<KnowledgePanel> {
               height: 10,
             ),
             Container(
-              height: 100,
+              height: 110,
               color: Colors.deepPurple[100],
               child: ListTile(
                 onTap: () {},

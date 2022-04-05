@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 
 import '../../utils/color_utils.dart';
-class LabDetails extends StatefulWidget {
-  String labName;
-  String address;
+class CourseDetails extends StatefulWidget {
+  String CourseName;
+  String Institute;
   String number;
-  String services;
+  String Details;
   String imgUrl;
 
-  LabDetails(this.labName,this.address,this.number,this.services,this.imgUrl);
+  CourseDetails(this.CourseName,this.Institute,this.number,this.Details,this.imgUrl);
 
   @override
-  State<LabDetails> createState() => _LabDetailsState();
+  State<CourseDetails> createState() => _CourseDetailsState();
 }
 
-class _LabDetailsState extends State<LabDetails> {
+class _CourseDetailsState extends State<CourseDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,7 +34,7 @@ class _LabDetailsState extends State<LabDetails> {
             onTap: (){
               //  Navigator.push(context, MaterialPageRoute(builder: (context)=> new HomePage()));
             },
-            child: Text("Advertisement Details")),
+            child: Text("Course Details")),
       ),
 
       body: Column(
@@ -46,7 +46,7 @@ class _LabDetailsState extends State<LabDetails> {
               child: Container(
                 color: Colors.white,
                 child:Image.network(widget.imgUrl,
-                fit: BoxFit.fill,),
+                  fit: BoxFit.fill,),
 
               ),
               footer: Container(
@@ -55,7 +55,7 @@ class _LabDetailsState extends State<LabDetails> {
                 child: ListTile(
                   leading:  Padding(
                     padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-                    child: Text(" ${widget.labName}",
+                    child: Text(" ${widget.CourseName}",
                       style: TextStyle(
                           fontWeight: FontWeight.bold, fontSize: 20.0),
                     ),
@@ -66,7 +66,7 @@ class _LabDetailsState extends State<LabDetails> {
                       Expanded(child: Padding(
                         padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
 
-                        child: Text('('"${widget.address}"')',
+                        child: Text('('"${widget.Institute}"')',
                           style: TextStyle(
                               fontWeight: FontWeight.bold, color: Colors.red, fontSize: 16.0),),
                       )
@@ -93,7 +93,7 @@ class _LabDetailsState extends State<LabDetails> {
           ListTile(
             title: Text("Description"),
             subtitle: Text(
-                "${widget.services}"),
+                "${widget.Details}"),
           ),
 
           Divider(),
@@ -103,7 +103,7 @@ class _LabDetailsState extends State<LabDetails> {
                 child: Text(
                   "Varient", style: TextStyle(color: Colors.grey),),),
               Padding(padding: EdgeInsets.all(5.0),
-                child: Text("${widget.labName}"),)
+                child: Text("${widget.CourseName}"),)
             ],
           ),
           Row(
@@ -128,7 +128,7 @@ class _LabDetailsState extends State<LabDetails> {
                 child: Text(
                   "Cutting Shape", style: TextStyle(color: Colors.grey),),),
               Padding(padding: EdgeInsets.all(5.0),
-                child: Text("${widget.address}"),)
+                child: Text("${widget.Institute}"),)
 
             ],
           ),
@@ -138,7 +138,7 @@ class _LabDetailsState extends State<LabDetails> {
                 child: Text(
                   "Weight", style: TextStyle(color: Colors.grey),),),
               Padding(padding: EdgeInsets.all(5.0),
-                child: Text("${widget.services}"),)
+                child: Text("${widget.Details}"),)
 
             ],
           ),

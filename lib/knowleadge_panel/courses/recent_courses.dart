@@ -2,16 +2,17 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import '../../utils/color_utils.dart';
-import 'labDetails_screen.dart';
+import 'courseDetails_screen.dart';
 
-class Labs extends StatefulWidget {
-  const Labs({Key? key}) : super(key: key);
+
+class Courses extends StatefulWidget {
+  const Courses({Key? key}) : super(key: key);
 
   @override
-  State<Labs> createState() => _LabsState();
+  State<Courses> createState() => _CoursesState();
 }
 
-class _LabsState extends State<Labs> {
+class _CoursesState extends State<Courses> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,12 +36,12 @@ class _LabsState extends State<Labs> {
               //  Navigator.push(context, MaterialPageRoute(builder: (context)=> new HomePage()));
             },
             child: Container(
-                child: Text("Recent Labs"))),
+                child: Text("Recent Courses"))),
       ),
       body: Container(
         child: Center(
           child: StreamBuilder<QuerySnapshot>(
-            stream: FirebaseFirestore.instance.collection('Labs').snapshots(),
+            stream: FirebaseFirestore.instance.collection('Courses').snapshots(),
             builder:
                 (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
               if (snapshot.hasError) {
@@ -58,39 +59,39 @@ class _LabsState extends State<Labs> {
 
                   // ignore: missing_return
                   itemBuilder: (BuildContext context, index) {
-                    QueryDocumentSnapshot Labs = snapshot.data!.docs[index];
+                    QueryDocumentSnapshot Courses = snapshot.data!.docs[index];
                     return Card(
                       child: InkWell(
                         onTap: () {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => LabDetails(
-                                    Labs['labName'],
-                                    Labs['address'],
-                                    Labs['number'],
-                                    Labs['services'],
-                                    Labs['imgUrl'])),
+                                builder: (context) => CourseDetails(
+                                    Courses['CourseName'],
+                                    Courses['Institute'],
+                                    Courses['number'],
+                                    Courses['Details'],
+                                    Courses['imgUrl'])),
                           );
                         },
                         child: Container(
                           decoration: BoxDecoration(
                             image: DecorationImage(
-                              image: NetworkImage(Labs['imgUrl']),
+                              image: NetworkImage(Courses['imgUrl']),
                               fit: BoxFit.fill,
                               alignment: Alignment.topCenter,
                             ),
                           ),
 
-                           child: Padding(
-                             padding: const EdgeInsets.fromLTRB(0, 155, 0, 0),
-                             child: Container(
-                               color: Colors.white60,
-                                 child: Padding(
-                                   padding: const EdgeInsets.fromLTRB(9, 8, 0, 0),
-                                   child: Text(Labs['labName'],style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold)),
-                                 )),
-                           ),
+                          child: Padding(
+                            padding: const EdgeInsets.fromLTRB(0, 155, 0, 0),
+                            child: Container(
+                                color: Colors.white60,
+                                child: Padding(
+                                  padding: const EdgeInsets.fromLTRB(9, 8, 0, 0),
+                                  child: Text(Courses['CourseName'],style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold)),
+                                )),
+                          ),
                         ),
                       ),
                     );
