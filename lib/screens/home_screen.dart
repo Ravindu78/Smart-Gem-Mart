@@ -4,10 +4,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:smart_gem_mart/knowleadge_panel/knowleadgepanel_screen.dart';
 import 'package:smart_gem_mart/price_checker/pricechecker_screen.dart';
 import 'package:smart_gem_mart/chat/messages_screen.dart';
-import 'package:smart_gem_mart/screens/profile_screen.dart';
+import 'package:smart_gem_mart/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_gem_mart/screens/posts.dart';
 import 'package:smart_gem_mart/screens/qrscanner.dart';
+import 'package:smart_gem_mart/screens/signin_screen.dart';
 import 'package:smart_gem_mart/utils/color_utils.dart';
 import 'package:smart_gem_mart/screens/about_screen.dart';
 import 'package:smart_gem_mart/globals.dart' as globals;
@@ -224,7 +225,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     InkWell(
                       onTap: () async {
-                        await FirebaseAuth.instance.signOut();
+                        await FirebaseAuth.instance.signOut().whenComplete(() => Navigator.of(context).pushReplacement(
+                            MaterialPageRoute(
+                              //passing the values of the gem products to the product detils page
+                                builder: (context) => SignInScreen())),);
                       },
                       child: ListTile(
                         title: Text('Log Out'),

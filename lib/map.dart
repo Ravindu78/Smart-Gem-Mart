@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:smart_gem_mart/reusable_widgets/addpostdetails.dart';
-
+import 'package:smart_gem_mart/reusable_widgets/alert.dart';
+import 'package:smart_gem_mart/screens/home_screen.dart';
 
 class SelectLocation extends StatefulWidget {
-
   String varient;
   String color;
   String shape;
@@ -18,14 +18,23 @@ class SelectLocation extends StatefulWidget {
   String phone;
   String filePath;
 
-  SelectLocation(this.varient,this.color,this.shape,this.weight,this.description,this.price,this.email,this.imgUrl,this.phone,this.filePath);
+  SelectLocation(
+      this.varient,
+      this.color,
+      this.shape,
+      this.weight,
+      this.description,
+      this.price,
+      this.email,
+      this.imgUrl,
+      this.phone,
+      this.filePath);
 
   @override
   _SelectLocationState createState() => _SelectLocationState();
 }
 
 class _SelectLocationState extends State<SelectLocation> {
-
   var lati = 0.0;
   var longi = 0.0;
 
@@ -68,11 +77,10 @@ class _SelectLocationState extends State<SelectLocation> {
     // When we reach here, permissions are granted and we can
     // continue accessing the position of the device.
     Position position =
-    await Geolocator.getCurrentPosition(forceAndroidLocationManager: true);
+        await Geolocator.getCurrentPosition(forceAndroidLocationManager: true);
     setState(() {
       lati = position.latitude;
       longi = position.longitude;
-
     });
   }
 
@@ -84,6 +92,7 @@ class _SelectLocationState extends State<SelectLocation> {
   }
 
   var markerVisibility = false;
+
   _mapTapped(LatLng location) {
     setState(() {
       lati = location.latitude;
@@ -116,16 +125,42 @@ class _SelectLocationState extends State<SelectLocation> {
                 },
                 mapType: MapType.normal,
                 myLocationEnabled: true,
-                initialCameraPosition:
-                const CameraPosition(target: LatLng(7.8731, 80.7718), zoom: 7.8),
+                initialCameraPosition: const CameraPosition(
+                    target: LatLng(7.8731, 80.7718), zoom: 7.8),
               ),
             ]),
           ),
           ElevatedButton(
-            onPressed: (){
-              AddPost(widget.varient,widget.color,widget.shape,widget.weight,widget.description,widget.price,widget.email,widget.imgUrl,GeoPoint(lati,longi),widget.phone,widget.filePath).uploadImage();
-              Navigator.pop(context);
-              Navigator.pop(context);
+            onPressed: () {
+              showConfirmDialog(
+                context,
+                "Confirmation",
+                "Are you sure you want to publish this advertisement?",
+                "Yes",
+                () {
+                  AddPost(
+                          widget.varient,
+                          widget.color,
+                          widget.shape,
+                          widget.weight,
+                          widget.description,
+                          widget.price,
+                          widget.email,
+                          widget.imgUrl,
+                          GeoPoint(lati, longi),
+                          widget.phone,
+                          widget.filePath)
+                      .uploadImage().whenComplete(() => Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        //passing the values of the gem products to the product detils page
+                          builder: (context) => HomeScreen())));
+
+                },
+                "No",
+                () {
+                  Navigator.pop(context);
+                },
+              );
             },
             child: Text('Submit'),
           ),

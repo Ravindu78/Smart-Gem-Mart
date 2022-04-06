@@ -6,7 +6,7 @@ import 'package:smart_gem_mart/screens/signup_screen.dart';
 import 'package:smart_gem_mart/utils/color_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_gem_mart/globals.dart' as globals;
-
+import 'package:smart_gem_mart/reusable_widgets/alert.dart';
 import '../reusable_widgets/reusable_widget.dart';
 import '../utils/color_utils.dart';
 
@@ -72,7 +72,7 @@ class _SignInScreenState extends State<SignInScreen> {
           globals.userEmail=value.user!.email!;
       Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
     }).onError((error, stackTrace) {
-      print("Error ${error.toString()}");
+      showAlertDialog(context, "Invalid Entry!", "The email and/or password is incorrect.", "OK");
     });
   }
 

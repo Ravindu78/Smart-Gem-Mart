@@ -3,6 +3,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:smart_gem_mart/profile/my_advertisments_screen.dart';
 import 'package:smart_gem_mart/reusable_widgets/reusable_widget.dart';
 import 'package:smart_gem_mart/screens/signin_screen.dart';
 import 'package:smart_gem_mart/screens/splash_screen.dart';
@@ -187,7 +188,7 @@ class _ProfileState extends State<Profile> {
                                     style: const TextStyle(fontWeight: FontWeight.bold),
                                   ),
                                   SizedBox(
-                                    width: 144,
+                                    width: 140,
                                   ),
                                   IconButton(onPressed: (){}, icon: const Icon(Icons.edit),
                                   color: Colors.deepPurple,)
@@ -214,6 +215,12 @@ class _ProfileState extends State<Profile> {
           padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
           child: Container(
            child: myProfileUiButton(context, "My Advertisements", () {
+             Navigator.push<void>(
+               context,
+               MaterialPageRoute<void>(
+                 builder: (BuildContext context) =>  MyAdvertisements(),
+               ),
+             );
              }
           ),),
         ),
@@ -226,7 +233,8 @@ class _ProfileState extends State<Profile> {
           }
           ),),
         Container(
-          child: myProfileUiButton(context, "Log Out", () {
+          child: myProfileUiButton(context, "Log Out", () async {
+            await FirebaseAuth.instance.signOut();
 
           }
           ),),
@@ -250,3 +258,4 @@ class _ProfileState extends State<Profile> {
     );
   }
 }
+
