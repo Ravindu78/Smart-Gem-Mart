@@ -125,9 +125,9 @@ class _ProductsState extends State<Products> {
                                         ),
                                       ),
                                       Text(
-                                        price,
+                                       'LKR '+ price,
                                         style: TextStyle(
-                                            color: Colors.purple,
+                                            color: Colors.red,
                                             fontWeight: FontWeight.bold),
                                       )
                                     ],
@@ -161,7 +161,7 @@ class _ProductsState extends State<Products> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.deepPurpleAccent,
         heroTag: null,
-        tooltip: 'Search people',
+        tooltip: 'Search For Your Gem',
         onPressed: () => showSearch(
           context: context,
           delegate: SearchPage<AddPost>(
@@ -212,6 +212,7 @@ class _ProductsState extends State<Products> {
                             ),
                           ),
                           Text(
+
                             prod.price,
                             style: TextStyle(
                                 color: Colors.purple,

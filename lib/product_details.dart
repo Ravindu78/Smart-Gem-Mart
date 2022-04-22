@@ -181,11 +181,11 @@ class _ProductDetailsState extends State<ProductDetails> {
             //  Navigator.push(context, MaterialPageRoute(builder: (context)=> new HomePage()));
               },
             child: Text("Product Details")),
-        actions: [
-          new IconButton(onPressed:(){}, icon: Icon(Icons.search)
-          ),
-
-        ],
+        // actions: [
+        //   new IconButton(onPressed:(){}, icon: Icon(Icons.search)
+        //   ),
+        //
+        // ],
       ),
 
       body: Column(
