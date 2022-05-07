@@ -86,7 +86,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       }).onError((error, stackTrace) {
                         print("Error ${error.toString()}");
                       });
-                      AddUser(email: _emailTextController.text,username:  _userNameTextController.text,number: _mobileTextController.text,password:_passwordTextController.text,nic:_nicTextController.text).addUser();
+                      AddUser(email: _emailTextController.text,username:  _userNameTextController.text,number: _mobileTextController.text,nic:_nicTextController.text).addUser();
                     },
                     ),
                   ],

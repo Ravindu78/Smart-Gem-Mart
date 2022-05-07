@@ -158,6 +158,11 @@ class _ProductsState extends State<Products> {
           ],
         ),
       ),
+
+
+      //==========SEARCH ==================================================================================////
+
+
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.deepPurpleAccent,
         heroTag: null,

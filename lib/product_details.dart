@@ -256,7 +256,7 @@ class _ProductDetailsState extends State<ProductDetails> {
               IconButton(onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) =>
-                        ChatScreen('ravindu54@gmail.com')));
+                        ChatScreen(email)));
               },
                 icon: Icon(Icons.message_rounded, color: Colors.deepPurple,),),
             ],

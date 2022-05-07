@@ -91,6 +91,18 @@ class _ChatScreenState extends State<ChatScreen> {
     })
         .then((value) => print("User Added"))
         .catchError((error) => print("Failed to add user: $error"));
+
+    await FirebaseFirestore.instance.collection('users').doc(globals.userEmail).collection('messages').doc(widget.email).set({
+      'lastTime': DateTime.now(),
+    })
+        .then((value) => print("User Added"))
+        .catchError((error) => print("Failed to add user: $error"));
+    await FirebaseFirestore.instance.collection('users').doc(widget.email).collection('messages').doc(globals.userEmail).set({
+      'lastTime': DateTime.now(),
+    })
+        .then((value) => print("User Added"))
+        .catchError((error) => print("Failed to add user: $error"));
+
   }
 
 
