@@ -51,7 +51,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => initialPage(),
-        '/1': (context) => Profile(),
+        '/1': (context) => SignInScreen(),
       },
     );
   }

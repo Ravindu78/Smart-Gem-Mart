@@ -1,3 +1,6 @@
+import 'dart:ffi';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:smart_gem_mart/reusable_widgets/reusable_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -15,8 +18,27 @@ class _PriceCheckerState extends State<PriceChecker> {
   TextEditingController _weightController = TextEditingController();
   TextEditingController _priceController = TextEditingController();
 
+  final db = FirebaseFirestore.instance;
+  double finalPrice = 0;
 
-
+  void calculatePrice (String variant ,String color , double weight) async {
+    final docRef = db.collection("PriceChecker").doc(variant).collection("colors").doc(color);
+    docRef.get().then(
+          (res) {
+            print("Successfully completed");
+            print(res.data()!['price01']);
+            if(weight<10.0){
+              finalPrice = res.data()!['price01'] * weight;
+            }else{
+              finalPrice = res.data()!['price02'] * weight;
+            }
+            setState(() {
+              print(finalPrice);
+            });
+          },
+      onError: (e) => print("Error completing: $e"),
+    );
+  }
 
   PopupMenuButton reusablePopupmenu(String value1,String value2,String value3,String value4,String value5,String value6,String value7 )
   {
@@ -106,7 +128,7 @@ class _PriceCheckerState extends State<PriceChecker> {
                                   Radius.circular(13.0) //                 <--- border radius here
                               ),
                             ),
-                            child: Text('0',style: TextStyle(fontSize: 20),),
+                            child: Text("LKR $finalPrice",style: TextStyle(fontSize: 20),),
 
                             alignment: AlignmentDirectional.centerEnd,
                           )
@@ -338,7 +360,9 @@ class _PriceCheckerState extends State<PriceChecker> {
                       ),
                       Row(
                         children: [
-                          Expanded(child: priceCheckerUiButton(context, "Check Price", (){})),
+                          Expanded(child: priceCheckerUiButton(context, "Check Price", (){
+                            calculatePrice(_varientNameController.text, _varientColorController.text, double.parse(_weightController.text));
+                          })),
                         ],
                       ),
 
