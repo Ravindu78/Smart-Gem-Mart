@@ -27,8 +27,8 @@ class _ProductsState extends State<Products> {
             StreamBuilder(
               stream: FirebaseFirestore.instance
                   .collection("Advertisment")
-                  .orderBy('time', descending: true)
-                  .where('publish', isEqualTo: 'true')
+                   .orderBy('time', descending: true)
+                   .where('publish', isEqualTo: 'true')
 
                   .snapshots(),
               builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -40,9 +40,13 @@ class _ProductsState extends State<Products> {
                     !snapshot.hasData) {
                   //  return CircularProgressIndicator();
                 }
+                if(snapshot.data!.size>0){
+                  print('123test');
+                }
 
                 if (snapshot.hasData) {
                   print('has data');
+                  // print(snapshot.data!.docs[0]);
                   return Container(
                     height: MediaQuery.of(context).size.height / 1.77,
                     color: Colors.white,

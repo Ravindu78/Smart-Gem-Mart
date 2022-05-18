@@ -14,6 +14,7 @@ class ChatScreen extends StatefulWidget {
 
 class _ChatScreenState extends State<ChatScreen> {
   final messageController = TextEditingController();
+  ScrollController _scrollController = new ScrollController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,6 +39,7 @@ class _ChatScreenState extends State<ChatScreen> {
                     }
 
                     return ListView(
+                      controller: _scrollController,
                       children: snapshot.data!.docs.map((DocumentSnapshot document) {
                         Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
                         return ListTile(
@@ -65,7 +67,14 @@ class _ChatScreenState extends State<ChatScreen> {
                 ),
               ),
               ElevatedButton(onPressed: (){
+
                 addMessage(messageController.text);
+                messageController.text='';
+                _scrollController.animateTo(
+                  _scrollController.position.maxScrollExtent,
+                  curve: Curves.easeOut,
+                  duration: const Duration(milliseconds: 300),
+                );
               }, child: Text('send'))
             ],
               ),

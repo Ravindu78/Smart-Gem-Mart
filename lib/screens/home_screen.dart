@@ -176,27 +176,27 @@ class _HomeScreenState extends State<HomeScreen> {
                               //passing the values of the gem products to the product detils page
                                 builder: (context) => HomeScreen())),),
                     ),
-                    InkWell(
-
-                      child: ListTile(
-                        title: Text('Knowleadge Panel'),
-                        leading: Icon(Icons.book, color: Colors.purple,),
-                        onTap: ()=> Navigator.of(context).push(
-                            MaterialPageRoute(
-                              //passing the values of the gem products to the product detils page
-                                builder: (context) => KnowledgePanel())),
-                      ),
-
-                    ),
-                    InkWell(
-                      child: ListTile(
-                        title: Text('Chats'),
-                        leading: Icon(Icons.message_rounded, color: Colors.purple,),
-                        onTap: ()=> Navigator.of(context).push(
-                            MaterialPageRoute(
-                              //passing the values of the gem products to the product detils page
-                                builder: (context) => PriceChecker())),),
-                    ),
+                    // InkWell(
+                    //
+                    //   child: ListTile(
+                    //     title: Text('Knowleadge Panel'),
+                    //     leading: Icon(Icons.book, color: Colors.purple,),
+                    //     onTap: ()=> Navigator.of(context).push(
+                    //         MaterialPageRoute(
+                    //           //passing the values of the gem products to the product detils page
+                    //             builder: (context) => KnowledgePanel())),
+                    //   ),
+                    //
+                    // ),
+                    // InkWell(
+                    //   child: ListTile(
+                    //     title: Text('Chats'),
+                    //     leading: Icon(Icons.message_rounded, color: Colors.purple,),
+                    //     onTap: ()=> Navigator.of(context).push(
+                    //         MaterialPageRoute(
+                    //           //passing the values of the gem products to the product detils page
+                    //             builder: (context) => PriceChecker())),),
+                    // ),
 
 
                     InkWell(
@@ -225,10 +225,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     InkWell(
                       onTap: () async {
-                        await FirebaseAuth.instance.signOut().whenComplete(() => Navigator.of(context).pushReplacement(
-                            MaterialPageRoute(
-                              //passing the values of the gem products to the product detils page
-                                builder: (context) => SignInScreen())),);
+                        await FirebaseAuth.instance.signOut().whenComplete(() {
+                          Navigator.popUntil(context, ModalRoute.withName('/'));
+                        },);
                       },
                       child: ListTile(
                         title: Text('Log Out'),

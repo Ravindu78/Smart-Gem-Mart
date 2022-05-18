@@ -13,7 +13,7 @@ class _MyAdvertisementsState extends State<MyAdvertisements> {
 
   @override
   void initState() {
-    print("AAAAAAAAAAAA"+globals.userEmail);
+    print("globals loaded(email logged)"+globals.userEmail);
   }
 
   @override
@@ -22,7 +22,7 @@ class _MyAdvertisementsState extends State<MyAdvertisements> {
       appBar: AppBar(),
       body: Container(
         child: StreamBuilder<QuerySnapshot>(
-          stream: FirebaseFirestore.instance.collection('Advertisment').where("email",isEqualTo: "rakshitha1@gmail.com").snapshots(),
+          stream: FirebaseFirestore.instance.collection('Advertisment').where("email",isEqualTo:globals.userEmail ).snapshots(),
           builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
             if (snapshot.hasError) {
               return Text('Something went wrong');

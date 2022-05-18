@@ -3,6 +3,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:smart_gem_mart/profile/edit%20profie.dart';
 import 'package:smart_gem_mart/profile/my_advertisments_screen.dart';
 import 'package:smart_gem_mart/reusable_widgets/reusable_widget.dart';
 import 'package:smart_gem_mart/screens/signin_screen.dart';
@@ -190,8 +191,8 @@ class _ProfileState extends State<Profile> {
                                   SizedBox(
                                     width: 140,
                                   ),
-                                  IconButton(onPressed: (){}, icon: const Icon(Icons.edit),
-                                  color: Colors.deepPurple,)
+                                  // IconButton(onPressed: (){}, icon: const Icon(Icons.edit),
+                                  // color: Colors.deepPurple,)
                                 ],
                               ),
                             ),
@@ -229,7 +230,13 @@ class _ProfileState extends State<Profile> {
           }
           ),),
         Container(
-          child: myProfileUiButton(context, "Security", () {
+          child: myProfileUiButton(context, "Edit Profile", () {
+            Navigator.push<void>(
+              context,
+              MaterialPageRoute<void>(
+                builder: (BuildContext context) =>  EditProfile(),
+              ),
+            );
           }
           ),),
         Container(
