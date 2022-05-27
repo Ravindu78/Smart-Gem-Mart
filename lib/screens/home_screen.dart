@@ -128,7 +128,7 @@ class _HomeScreenState extends State<HomeScreen> {
         titleSpacing: 20,
       ),
         drawer: Drawer(
-         backgroundColor: Colors.white60,
+         backgroundColor: Colors.white,
           child: ListView(
             children: [
               Container(
@@ -154,7 +154,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               Container(
-                height: 550,
                 child: Column(
                   children: [
                     InkWell(

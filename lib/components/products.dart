@@ -48,9 +48,10 @@ class _ProductsState extends State<Products> {
                   print('has data');
                   // print(snapshot.data!.docs[0]);
                   return Container(
-                    height: 455,
+
+                    height:   MediaQuery.of(context).size.height/1.56,
                     // height: MediaQuery.of(context).size.height / 1.77,
-                    color: Colors.white,
+
                     child: GridView.builder(
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2),

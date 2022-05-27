@@ -37,12 +37,12 @@ class _PostsState extends State<Posts> {
               if (snapshot.hasData) {
                 print('has data');
                 return Container(
-                  height: 130,
+
+                  height: 132,
 
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: snapshot.data?.docs.length,
-
                     // ignore: missing_return
                     itemBuilder: (BuildContext context, index) {
                       QueryDocumentSnapshot category =
@@ -130,15 +130,6 @@ class _PostsState extends State<Posts> {
 
         ],
       ),
-      // floatingActionButton: FloatingActionButton(
-      //
-      //   onPressed: (){
-      //     Navigator.push(context,
-      //         MaterialPageRoute(builder: (context) => AddPostScreen()));
-      //   },
-      //   child: Icon(Icons.add),backgroundColor: Colors.purpleAccent,
-      // ),
-      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-    );
+     );
   }
 }

@@ -202,8 +202,10 @@ class _ProductDetailsState extends State<ProductDetails> {
           Container(
             height: 200.0,
             child: GridTile(
-              child: Container(
-                color: Colors.white,
+              child: InteractiveViewer(
+                boundaryMargin: EdgeInsets.all(20.0),
+                minScale: 0.1,
+                maxScale: 5,
                   child:Image.network(
                       imgurl),
               ),
@@ -211,7 +213,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                 color: Colors.white54,
                 child: ListTile(
                   leading:  Text(" $varient",
-                    style: TextStyle(
+                    style: TextStyle(color: Colors.black,
                         fontWeight: FontWeight.bold, fontSize: 16.0),
                   ),
                   title: Row(
@@ -253,18 +255,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                     // ),
                   ),
                 ),
-                // child: MaterialButton(
-                //     onPressed: () {
-                //       // Navigator.of(context).push(MaterialPageRoute(
-                //       //   builder: (context) =>
-                //       //       ChatScreen(email)));
-                //       PaywithPayHere();
-                //     },
-                //     color: Colors.purpleAccent,
-                //     textColor: Colors.white,
-                //     elevation: 0.2,
-                //     child: Text("Buy Now")
-                // ),
+
               ),
 
               IconButton(onPressed: () {
@@ -272,14 +263,17 @@ class _ProductDetailsState extends State<ProductDetails> {
                     builder: (context) =>
                         ChatScreen(email)));
               },
-                icon: Icon(Icons.message_rounded, color: Colors.deepPurple,),),
+                icon: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Icon(Icons.message_rounded, color: Colors.black54,),
+                ),),
             ],
           ),
 
           ListTile(
-            title: Text("Description"),
+            title: Text("More",style: TextStyle(color: Colors.black ,fontWeight: FontWeight.bold, fontSize: 16.0),),
             subtitle: Text(
-                "$descrip"),
+                "$descrip",style: TextStyle(color: Colors.black , fontSize: 14.0),) ,
           ),
 
           Divider(),
@@ -287,7 +281,7 @@ class _ProductDetailsState extends State<ProductDetails> {
             children: [
               Padding(padding: const EdgeInsets.fromLTRB(12.0, 5.0, 5.0, 5.0),
                 child: Text(
-                  "Varient", style: TextStyle(color: Colors.grey),),),
+                  "Varient :", style: TextStyle(color: Colors.black ,fontWeight: FontWeight.bold, fontSize: 16.0),),),
               Padding(padding: EdgeInsets.all(5.0),
                 child: Text("$varient"),)
             ],
@@ -296,7 +290,7 @@ class _ProductDetailsState extends State<ProductDetails> {
             children: [
               Padding(padding: const EdgeInsets.fromLTRB(12.0, 5.0, 5.0, 5.0),
                 child: Text(
-                  "Color", style: TextStyle(color: Colors.grey),),),
+                  "Color :",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold , fontSize: 14.0),),),
 
               //=======remember to creat the product brand====
 
@@ -312,7 +306,7 @@ class _ProductDetailsState extends State<ProductDetails> {
             children: [
               Padding(padding: const EdgeInsets.fromLTRB(12.0, 5.0, 5.0, 5.0),
                 child: Text(
-                  "Cutting Shape", style: TextStyle(color: Colors.grey),),),
+                  "Cutting Shape :",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold , fontSize: 14.0),),),
               Padding(padding: EdgeInsets.all(5.0),
                 child: Text("$shape"),)
 
@@ -322,9 +316,9 @@ class _ProductDetailsState extends State<ProductDetails> {
             children: [
               Padding(padding: const EdgeInsets.fromLTRB(12.0, 5.0, 5.0, 5.0),
                 child: Text(
-                  "Weight", style: TextStyle(color: Colors.grey),),),
+                  "Weight :",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold , fontSize: 14.0),),),
               Padding(padding: EdgeInsets.all(5.0),
-                child: Text("$weight"),)
+                child: Text("$weight ct",style: TextStyle(color: Colors.black, fontSize: 15.0),),),
 
             ],
           ),

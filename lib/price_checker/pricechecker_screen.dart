@@ -101,7 +101,7 @@ class _PriceCheckerState extends State<PriceChecker> {
 
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
-          color: Colors.white,
+
           //=========ADDING ADVERTISMENT FIELDS TI FILL=========
 
           child: SingleChildScrollView(
@@ -112,23 +112,23 @@ class _PriceCheckerState extends State<PriceChecker> {
                   child: Column(
                     children: <Widget>[
                       const SizedBox(
-                        height: 20,
+                        height: 10,
                       ),
 
                       Row(
                         children: [
                           Container(
-                            width:250,
+                            width:330,
                             height: 50,
                             margin: const EdgeInsets.all(15.0),
                             padding: const EdgeInsets.all(3.0),
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.black,width: 1),
                               borderRadius: BorderRadius.all(
-                                  Radius.circular(13.0) //                 <--- border radius here
+                                  Radius.circular(30.0) //                 <--- border radius here
                               ),
                             ),
-                            child: Text("LKR $finalPrice",style: TextStyle(fontSize: 20),),
+                            child: Text("LKR $finalPrice  ",style: TextStyle(fontSize: 20),),
 
                             alignment: AlignmentDirectional.centerEnd,
                           )
@@ -352,7 +352,7 @@ class _PriceCheckerState extends State<PriceChecker> {
                       Row(
                         children: [
                           Expanded(child: reusableTextField6(
-                              " weight", Icons.monitor_weight, false,true, _weightController,'Please Enter the weight',r'[+-]?([0-9]*[.])?[0-9]+','Enter valid Weight'),),
+                              " weight (ct)", Icons.monitor_weight, false,true, _weightController,'Please Enter the weight',r'[+-]?([0-9]*[.])?[0-9]+','Enter valid Weight'),),
                         ],
                       ),
                       const SizedBox(
@@ -365,6 +365,21 @@ class _PriceCheckerState extends State<PriceChecker> {
                           })),
                         ],
                       ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        children: [
+                          Container(
+                            width: 350,
+                            // color: Colors.yellow,
+                            child: Expanded(child: Text (
+
+                                  '(* This will only calculate the approximate current price for your gemstone. It can go up or down.)',
+
+                              ) ,),
+                          ),                      ],
+                      )
 
                   ],
 

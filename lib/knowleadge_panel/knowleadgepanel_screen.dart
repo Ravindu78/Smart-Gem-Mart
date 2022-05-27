@@ -46,6 +46,9 @@ class _KnowledgePanelState extends State<KnowledgePanel> {
 
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            SizedBox(
+              height: 6,
+            ),
 
             Center(
 
@@ -59,10 +62,10 @@ class _KnowledgePanelState extends State<KnowledgePanel> {
                       NetworkImage(images[2]),
                     ],
                     dotSize: 4.0,
-                    dotSpacing: 15.0,
-                    dotColor: Colors.lightGreenAccent,
+                    dotSpacing: 16.0,
+                    dotColor: Colors.black,
                     indicatorBgPadding: 5.0,
-                    dotBgColor: Colors.purple.withOpacity(0.5),
+                    dotBgColor: Colors.white60,
                     borderRadius: true,
                   ): Center(
                     child: CircularProgressIndicator(),
@@ -70,12 +73,14 @@ class _KnowledgePanelState extends State<KnowledgePanel> {
               ),
             ),
           SizedBox(
-            height: 20,
+            height: 6,
           ),
           Container(
-            height: 110,
+
+            height: 220,
             color: Colors.deepPurple[100],
             child: ListTile(
+
               onTap: (){
                 Navigator.push<void>(
                   context,
@@ -84,9 +89,18 @@ class _KnowledgePanelState extends State<KnowledgePanel> {
                   ),
                 );
               },
-                  title: Text('LABORATORIES'),
-                  subtitle: Text(
-                      'Lab Services'
+                  title: Padding(
+                    padding: const EdgeInsets.fromLTRB(2,2, 2, 2),
+                    child: Text('LABORATORIES',style: TextStyle(color: Colors.black,
+                        fontWeight: FontWeight.bold, fontSize: 20.0),),
+                  ),
+                  subtitle: Padding(
+
+                    padding: const EdgeInsets.fromLTRB(2,2, 2, 2),
+                    child: Text(
+                        'Lab Services\nTo publish (Contact us):\nEmail   :  test123@gmail.com\nmobile :  0773333333',
+
+                    ),
                   ),
 
           ),
@@ -95,7 +109,7 @@ class _KnowledgePanelState extends State<KnowledgePanel> {
               height: 10,
             ),
             Container(
-              height: 110,
+              height: 220,
               color: Colors.pink[100],
               child: ListTile(
                 onTap: () {
@@ -106,30 +120,25 @@ class _KnowledgePanelState extends State<KnowledgePanel> {
                     ),
                   );
                 },
-                title: Text('Cources'),
-                subtitle: Text(
-                    'Courses and Deplomas'
+                title: Padding(
+                  padding: const EdgeInsets.fromLTRB(2,2, 2, 2),
+                  child: Text('COURCES',style: TextStyle(color: Colors.black,
+                      fontWeight: FontWeight.bold, fontSize: 20.0),),
                 ),
+                subtitle: Padding(
+                  padding: const EdgeInsets.fromLTRB(2,2, 2, 2),
+                  child: Text(
+                      'To publish (Contact us):\nEmail:test123@gmail.com\nmobile:0773333333'
+                  ),
+
+                ),
+
 
               ),
             ),
             SizedBox(
               height: 10,
             ),
-            Container(
-              height: 110,
-              color: Colors.deepPurple[100],
-              child: ListTile(
-                onTap: () {},
-                title: Text('Cources'),
-                subtitle: Text(
-                    'Courses and Deplomas'
-                ),
-
-              ),
-            ),
-
-
           ],
 
         ),
