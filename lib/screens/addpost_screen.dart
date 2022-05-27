@@ -370,7 +370,7 @@ void initState() {
                       ),
                       Row(
                         children: [
-                          Expanded(child: reusableTextField4("price", Icons.price_change, false,true, _priceController,'Enter the price',r'(^\d{0,8}(\.\d{1,4})?$)', 'Enter a Valid Price'),),
+                          Expanded(child: reusableTextField4("price", Icons.price_change, false,true, _priceController,'Enter the price',r'(^\d{0,200}(\.\d{1,4})?$)', 'Enter a Valid Price'),),
                         ],
                       ),
                       const SizedBox(

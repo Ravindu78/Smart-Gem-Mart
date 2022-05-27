@@ -21,9 +21,9 @@ StatefulWidget initialPage()
 {
   if(FirebaseAuth.instance.currentUser != null)
     {
-      return HomeScreen();
+      return SplashScreen2();
     }else{
-    return const SignInScreen();
+    return const SplashScreen();
   }
 }
 

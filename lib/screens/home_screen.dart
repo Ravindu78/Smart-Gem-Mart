@@ -176,27 +176,6 @@ class _HomeScreenState extends State<HomeScreen> {
                               //passing the values of the gem products to the product detils page
                                 builder: (context) => HomeScreen())),),
                     ),
-                    // InkWell(
-                    //
-                    //   child: ListTile(
-                    //     title: Text('Knowleadge Panel'),
-                    //     leading: Icon(Icons.book, color: Colors.purple,),
-                    //     onTap: ()=> Navigator.of(context).push(
-                    //         MaterialPageRoute(
-                    //           //passing the values of the gem products to the product detils page
-                    //             builder: (context) => KnowledgePanel())),
-                    //   ),
-                    //
-                    // ),
-                    // InkWell(
-                    //   child: ListTile(
-                    //     title: Text('Chats'),
-                    //     leading: Icon(Icons.message_rounded, color: Colors.purple,),
-                    //     onTap: ()=> Navigator.of(context).push(
-                    //         MaterialPageRoute(
-                    //           //passing the values of the gem products to the product detils page
-                    //             builder: (context) => PriceChecker())),),
-                    // ),
 
 
                     InkWell(
@@ -226,8 +205,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     InkWell(
                       onTap: () async {
                         await FirebaseAuth.instance.signOut().whenComplete(() {
-                          Navigator.popUntil(context, ModalRoute.withName('/'));
+                         Navigator.pop(context);
+                         Navigator.pushReplacementNamed(context, '/1');
                         },);
+
                       },
                       child: ListTile(
                         title: Text('Log Out'),
@@ -260,24 +241,6 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
 
 
-      /*bottomNavigationBar: BottomNavigationBar(
-
-          items: [
-            BottomNavigationBarItem(
-              icon: new Icon(Icons.hide_image),
-              label: 'add',
-            ),
-            BottomNavigationBarItem(
-              icon: new Icon(Icons.add),
-              label: 'add',
-
-            ),
-            BottomNavigationBarItem(
-              icon: new Icon(Icons.account_circle),
-              label: 'add',
-            ),
-          ],
-      ),*/
 
     ),
 

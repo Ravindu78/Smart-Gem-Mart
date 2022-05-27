@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../components/products.dart';
 import 'addpost_screen.dart';
-import 'category_details.dart';
+import '../category_screens/category_details.dart';
 
 class Posts extends StatefulWidget {
   const Posts({Key? key}) : super(key: key);
@@ -16,23 +16,7 @@ class Posts extends StatefulWidget {
 class _PostsState extends State<Posts> {
   @override
   Widget build(BuildContext context) {
-    // Widget image_carousel = new Container(
-    //   height: 200.0,
-    //   child: new Carousel(
-    //     boxFit: BoxFit.cover,
-    //     images: [AssetImage('images/p1.jpg'),
-    //       AssetImage('images/p2.jpg'),
-    //       AssetImage('images/p3.jpg'),
-    //     ],
-    //     autoplay: true,
-    //     animationCurve: Curves.fastOutSlowIn,
-    //     animationDuration: Duration(milliseconds: 1000),
-    //     dotSize: 5.0,
-    //     dotColor: Colors.white70,
-    //     dotBgColor: Colors.transparent,
-    //     indicatorBgPadding: 5.0,
-    //   ),
-    // );
+
     return Scaffold(
 
       body: Column(
@@ -47,14 +31,14 @@ class _PostsState extends State<Posts> {
 
               if (snapshot.connectionState == ConnectionState.waiting ||
                   !snapshot.hasData) {
-                //  return CircularProgressIndicator();
+                 return CircularProgressIndicator();
               }
 
               if (snapshot.hasData) {
                 print('has data');
                 return Container(
                   height: 130,
-                  color: Colors.white,
+
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: snapshot.data?.docs.length,
@@ -75,26 +59,39 @@ class _PostsState extends State<Posts> {
                                 MaterialPageRoute(
                                     builder: (context) =>
                                         CategoryDetails(category['name']))),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
+                            child: Stack(
+
                               children: <Widget>[
                                 Container(
-                                  margin: EdgeInsets.only(
-                                      top: 5, right: 5, left: 5),
-                                  width: 100,
-                                  height: 80,
+
+                                  width: 120,
+                                  height: 130,
                                   child: Image.network(
                                     imgurl,
-                                    fit: BoxFit.fill,
+                                    fit: BoxFit.cover,
                                   ),
                                 ),
-                                Padding(
-                                  padding: EdgeInsets.only(top: 5, bottom: 5),
-                                  child: Text(
-                                    name,
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(),
-                                  ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: <Widget>[
+
+                                    Padding(
+                                      padding: EdgeInsets.only(top: 96, bottom: 0),
+                                      child: Container(
+
+                                        width: 120,
+                                        color: Colors.white.withOpacity(0.8),
+                                        child: Padding(
+                                          padding: EdgeInsets.only(top: 5, bottom: 5),
+                                          child: Text(
+                                            name,
+                                            textAlign: TextAlign.center,
+                                           // style: TextStyle(),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),

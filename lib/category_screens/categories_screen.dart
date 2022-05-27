@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:smart_gem_mart/screens/category_details.dart';
+import 'package:smart_gem_mart/category_screens/category_details.dart';
 
 class Categories extends StatefulWidget {
   const Categories({Key? key}) : super(key: key);

@@ -38,7 +38,7 @@ class _ProductsState extends State<Products> {
 
                 if (snapshot.connectionState == ConnectionState.waiting ||
                     !snapshot.hasData) {
-                  //  return CircularProgressIndicator();
+                    return CircularProgressIndicator();
                 }
                 if(snapshot.data!.size>0){
                   print('123test');
@@ -48,7 +48,8 @@ class _ProductsState extends State<Products> {
                   print('has data');
                   // print(snapshot.data!.docs[0]);
                   return Container(
-                    height: MediaQuery.of(context).size.height / 1.77,
+                    height: 455,
+                    // height: MediaQuery.of(context).size.height / 1.77,
                     color: Colors.white,
                     child: GridView.builder(
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -115,25 +116,22 @@ class _ProductsState extends State<Products> {
                                           location))),
 
                               child: GridTile(
+
                                 footer: Container(
-                                  height: 40,
+                                  height: 25,
                                   color: Colors.white60,
                                   child: Row(
                                     children: [
                                       Expanded(
-                                        child: Text(
-                                          varient,
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 16.0),
+                                        child: Center(
+                                          child: Text(
+                                            varient,
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 16.0),
+                                          ),
                                         ),
                                       ),
-                                      Text(
-                                       'LKR '+ price,
-                                        style: TextStyle(
-                                            color: Colors.red,
-                                            fontWeight: FontWeight.bold),
-                                      )
                                     ],
                                   ),
                                 ),

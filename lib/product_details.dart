@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:pay/pay.dart';
 import 'package:payhere_mobilesdk_flutter/payhere_mobilesdk_flutter.dart';
 import 'package:smart_gem_mart/chat/chat_screen.dart';
 import 'package:smart_gem_mart/utils/color_utils.dart';
@@ -48,6 +49,9 @@ class _ProductDetailsState extends State<ProductDetails> {
     super.initState();
     getUserDetails();
     getOrderNumberNIncrease ();
+  }
+  void onGooglePayResult(paymentResult) {
+    debugPrint(paymentResult.toString());
   }
   void getUserDetails () async
   {
@@ -163,6 +167,11 @@ class _ProductDetailsState extends State<ProductDetails> {
   }
   @override
   Widget build(BuildContext context) {
+    final _paymentItems = [
+      PaymentItem(
+        label: varient,    amount: price,    status: PaymentItemStatus.final_price,
+      )
+    ];
     return Scaffold(
       appBar: AppBar(
         flexibleSpace: Container(
@@ -208,9 +217,9 @@ class _ProductDetailsState extends State<ProductDetails> {
                   title: Row(
                     children:  [
 
-                      Expanded(child: Text("$price",
+                      Expanded(child: Text("LKR $price",
                         style: TextStyle(
-                            fontWeight: FontWeight.bold, color: Colors.deepPurple),)
+                            fontWeight: FontWeight.bold, color: Colors.red),)
                       ),
                     ],
                   ),
@@ -229,30 +238,35 @@ class _ProductDetailsState extends State<ProductDetails> {
             children: [
               //===== the size button
               Expanded(
-                child: MaterialButton(
-                    onPressed: () {
-                      // Navigator.of(context).push(MaterialPageRoute(
-                      //   builder: (context) =>
-                      //       ChatScreen(email)));
-                      PaywithPayHere();
-                    },
-                    color: Colors.purpleAccent,
-                    textColor: Colors.white,
-                    elevation: 0.2,
-                    child: Text("Buy Now")
+
+                child:Container(
+                  child: GooglePayButton(
+                    width: 150,
+                    paymentConfigurationAsset: 'googlepay.json',
+                    paymentItems: _paymentItems,
+                    style: GooglePayButtonStyle.black,
+                    type: GooglePayButtonType.pay,
+                    margin: const EdgeInsets.only(top: 15.0),
+                    onPaymentResult: onGooglePayResult,
+                    // loadingIndicator: const Center(
+                    //   child: CircularProgressIndicator(),
+                    // ),
+                  ),
                 ),
+                // child: MaterialButton(
+                //     onPressed: () {
+                //       // Navigator.of(context).push(MaterialPageRoute(
+                //       //   builder: (context) =>
+                //       //       ChatScreen(email)));
+                //       PaywithPayHere();
+                //     },
+                //     color: Colors.purpleAccent,
+                //     textColor: Colors.white,
+                //     elevation: 0.2,
+                //     child: Text("Buy Now")
+                // ),
               ),
-              // Expanded( child: MaterialButton(
-              //     onPressed: () {
-              //       Navigator.of(context).push(MaterialPageRoute(
-              //           builder: (context) =>
-              //               ChatScreen('ravindu54@gmail.com')));
-              //     },
-              //     color: Colors.purpleAccent,
-              //     textColor: Colors.white,
-              //     elevation: 0.2,
-              //     child: Text("Chat")
-              // ),),
+
               IconButton(onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) =>
