@@ -87,13 +87,11 @@ class _CoursesState extends State<Courses> {
                             padding: const EdgeInsets.fromLTRB(0, 155, 0, 0),
                             child: Container(
                                 color: Colors.white60,
-                                child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(9, 8, 0, 0),
-                                  child: Text(Courses['CourseName'],style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold)),
+                                  child: Center(child: Text(Courses['CourseName'],style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold))),
                                 )),
                           ),
                         ),
-                      ),
+
                     );
                   });
             },

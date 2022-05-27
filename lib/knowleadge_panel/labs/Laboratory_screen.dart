@@ -87,13 +87,13 @@ class _LabsState extends State<Labs> {
                              padding: const EdgeInsets.fromLTRB(0, 155, 0, 0),
                              child: Container(
                                color: Colors.white60,
-                                 child: Padding(
-                                   padding: const EdgeInsets.fromLTRB(9, 8, 0, 0),
-                                   child: Text(Labs['labName'],style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold)),
+
+
+                                   child: Center(child: Text(Labs['labName'],style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold))),
                                  )),
                            ),
                         ),
-                      ),
+
                     );
                   });
             },

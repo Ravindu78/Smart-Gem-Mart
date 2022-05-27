@@ -66,9 +66,9 @@ class _LabDetailsState extends State<LabDetails> {
                       Expanded(child: Padding(
                         padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
 
-                        child: Text('('"${widget.address}"')',
+                        child: Text('('"${widget.number}"')',
                           style: TextStyle(
-                              fontWeight: FontWeight.bold, color: Colors.red, fontSize: 16.0),),
+                              fontWeight: FontWeight.bold, color: Colors.black, fontSize: 16.0),),
                       )
                       ),
                     ],
@@ -101,7 +101,7 @@ class _LabDetailsState extends State<LabDetails> {
             children: [
               Padding(padding: const EdgeInsets.fromLTRB(12.0, 5.0, 5.0, 5.0),
                 child: Text(
-                  "Varient", style: TextStyle(color: Colors.grey),),),
+                  "Lab name :", style: TextStyle(color: Colors.grey),),),
               Padding(padding: EdgeInsets.all(5.0),
                 child: Text("${widget.labName}"),)
             ],
@@ -110,7 +110,7 @@ class _LabDetailsState extends State<LabDetails> {
             children: [
               Padding(padding: const EdgeInsets.fromLTRB(12.0, 5.0, 5.0, 5.0),
                 child: Text(
-                  "Color", style: TextStyle(color: Colors.grey),),),
+                  "Contact :", style: TextStyle(color: Colors.grey),),),
 
               //=======remember to creat the product brand====
 
@@ -126,7 +126,7 @@ class _LabDetailsState extends State<LabDetails> {
             children: [
               Padding(padding: const EdgeInsets.fromLTRB(12.0, 5.0, 5.0, 5.0),
                 child: Text(
-                  "Cutting Shape", style: TextStyle(color: Colors.grey),),),
+                  "Address :", style: TextStyle(color: Colors.grey),),),
               Padding(padding: EdgeInsets.all(5.0),
                 child: Text("${widget.address}"),)
 
@@ -136,7 +136,7 @@ class _LabDetailsState extends State<LabDetails> {
             children: [
               Padding(padding: const EdgeInsets.fromLTRB(12.0, 5.0, 5.0, 5.0),
                 child: Text(
-                  "Weight", style: TextStyle(color: Colors.grey),),),
+                  "Activities :", style: TextStyle(color: Colors.grey),),),
               Padding(padding: EdgeInsets.all(5.0),
                 child: Text("${widget.services}"),)
 

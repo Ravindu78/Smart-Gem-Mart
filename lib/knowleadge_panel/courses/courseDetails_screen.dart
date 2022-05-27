@@ -68,7 +68,7 @@ class _CourseDetailsState extends State<CourseDetails> {
 
                         child: Text('('"${widget.Institute}"')',
                           style: TextStyle(
-                              fontWeight: FontWeight.bold, color: Colors.red, fontSize: 16.0),),
+                              fontWeight: FontWeight.bold, color: Colors.black, fontSize: 16.0),),
                       )
                       ),
                     ],
@@ -101,7 +101,7 @@ class _CourseDetailsState extends State<CourseDetails> {
             children: [
               Padding(padding: const EdgeInsets.fromLTRB(12.0, 5.0, 5.0, 5.0),
                 child: Text(
-                  "Varient", style: TextStyle(color: Colors.grey),),),
+                  "Course Title :", style: TextStyle(color: Colors.grey),),),
               Padding(padding: EdgeInsets.all(5.0),
                 child: Text("${widget.CourseName}"),)
             ],
@@ -110,7 +110,7 @@ class _CourseDetailsState extends State<CourseDetails> {
             children: [
               Padding(padding: const EdgeInsets.fromLTRB(12.0, 5.0, 5.0, 5.0),
                 child: Text(
-                  "Color", style: TextStyle(color: Colors.grey),),),
+                  "Contact :", style: TextStyle(color: Colors.grey),),),
 
               //=======remember to creat the product brand====
 
@@ -126,7 +126,7 @@ class _CourseDetailsState extends State<CourseDetails> {
             children: [
               Padding(padding: const EdgeInsets.fromLTRB(12.0, 5.0, 5.0, 5.0),
                 child: Text(
-                  "Cutting Shape", style: TextStyle(color: Colors.grey),),),
+                  "Institute :", style: TextStyle(color: Colors.grey),),),
               Padding(padding: EdgeInsets.all(5.0),
                 child: Text("${widget.Institute}"),)
 
@@ -136,7 +136,7 @@ class _CourseDetailsState extends State<CourseDetails> {
             children: [
               Padding(padding: const EdgeInsets.fromLTRB(12.0, 5.0, 5.0, 5.0),
                 child: Text(
-                  "Weight", style: TextStyle(color: Colors.grey),),),
+                  "Details :", style: TextStyle(color: Colors.grey),),),
               Padding(padding: EdgeInsets.all(5.0),
                 child: Text("${widget.Details}"),)
 

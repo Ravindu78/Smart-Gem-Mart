@@ -169,18 +169,18 @@ class _ProductsState extends State<Products> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.deepPurpleAccent,
         heroTag: null,
-        tooltip: 'Search For Your Gem',
+        tooltip: 'Search For Your Gems',
         onPressed: () => showSearch(
           context: context,
           delegate: SearchPage<AddPost>(
             onQueryUpdate: (s) => print(s),
             items: _products,
-            searchLabel: 'Search people',
+            searchLabel: 'Search Gems',
             suggestion: Center(
-              child: Text('Filter people by name, surname or age'),
+              child: Text('Filter By Variant'),
             ),
             failure: Center(
-              child: Text('No person found :('),
+              child: Text('items not found :('),
             ),
             filter: (prod) => [
               prod.varient,
@@ -188,7 +188,7 @@ class _ProductsState extends State<Products> {
               prod.shape,
             ],
             builder: (prod) => Container(
-              height: MediaQuery.of(context).size.height / 6,
+              height: MediaQuery.of(context).size.height / 2,
               child: Card(
                 elevation: 5,
                 child: InkWell(

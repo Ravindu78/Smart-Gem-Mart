@@ -3,6 +3,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_gem_mart/globals.dart' as globals;
 
+import '../utils/color_utils.dart';
+
 class ChatScreen extends StatefulWidget {
   String email;
 
@@ -18,8 +20,22 @@ class _ChatScreenState extends State<ChatScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: new AppBar(
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [hexStringToColor("CB2B93"),
+                hexStringToColor("9546C4"),
+                hexStringToColor("5E61F4")],
+              begin: Alignment.topCenter, end: Alignment.bottomCenter,
+            ),
+          ),
+        ),
+        elevation: 0.2,
+
         title: Text('Chat'),
+
+
       ),
       body: SafeArea(
         child: Column(
@@ -66,7 +82,9 @@ class _ChatScreenState extends State<ChatScreen> {
                   ),
                 ),
               ),
-              ElevatedButton(onPressed: (){
+              ElevatedButton(
+
+                onPressed: (){
 
                 addMessage(messageController.text);
                 messageController.text='';
@@ -75,7 +93,9 @@ class _ChatScreenState extends State<ChatScreen> {
                   curve: Curves.easeOut,
                   duration: const Duration(milliseconds: 300),
                 );
-              }, child: Text('send'))
+              },
+                child: Text('send'),),
+
             ],
               ),
             )
