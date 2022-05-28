@@ -4,9 +4,12 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:pay/pay.dart';
 import 'package:payhere_mobilesdk_flutter/payhere_mobilesdk_flutter.dart';
 import 'package:smart_gem_mart/chat/chat_screen.dart';
+import 'package:smart_gem_mart/screens/home_screen.dart';
 import 'package:smart_gem_mart/utils/color_utils.dart';
 import 'package:smart_gem_mart/globals.dart' as globals;
+
 class ProductDetails extends StatefulWidget {
+  String docId;
   String imgurl;
   String price;
   String descrip;
@@ -18,7 +21,7 @@ class ProductDetails extends StatefulWidget {
   String  email;
   GeoPoint location;
 
-  ProductDetails(this.imgurl,this.price,this.descrip,this.varient,this.color,this.shape,this.weight,this.phoneNo,this.email,this.location);
+  ProductDetails(this.docId,this.imgurl,this.price,this.descrip,this.varient,this.color,this.shape,this.weight,this.phoneNo,this.email,this.location);
 
   //const ProductDetails({Key? key}) : super(key: key);
 
@@ -46,12 +49,37 @@ class _ProductDetailsState extends State<ProductDetails> {
 
   @override
   void initState() {
+
     super.initState();
+    print(widget.docId);
     getUserDetails();
     getOrderNumberNIncrease ();
   }
+  CollectionReference ad = FirebaseFirestore.instance.collection('Advertisment');
+
+  Future<void> deleteAd() {
+    return ad
+        .doc(widget.docId)
+        .delete()
+        .then((value) => print("Ad Deleted"))
+        .catchError((error) => print("Failed to delete ad: $error"));
+  }
+
   void onGooglePayResult(paymentResult) {
     debugPrint(paymentResult.toString());
+    try{
+      addOrderDetails();
+      updateOrderNumber ();
+      deleteAd();
+      showAlertDialog('Payment SUCCESS! ', context);
+
+
+
+    } catch (e)
+    {
+      showAlertDialog('Payment FAILED! ', context);
+    }
+
   }
   void getUserDetails () async
   {
@@ -142,6 +170,7 @@ class _ProductDetailsState extends State<ProductDetails> {
         })
         .then((value) => print("orderNumber Updated"))
         .catchError((error) => print("Failed to update Order Number: $error"));
+
   }
 
 
@@ -167,6 +196,7 @@ class _ProductDetailsState extends State<ProductDetails> {
   }
   @override
   Widget build(BuildContext context) {
+
     final _paymentItems = [
       PaymentItem(
         label: varient,    amount: price,    status: PaymentItemStatus.final_price,
@@ -238,6 +268,7 @@ class _ProductDetailsState extends State<ProductDetails> {
           //===========the second buttons======//
           Row(
             children: [
+
               //===== the size button
               Expanded(
 
@@ -349,6 +380,30 @@ class _ProductDetailsState extends State<ProductDetails> {
 
         ],
       ),
+    );
+  }
+  showAlertDialog(String message, BuildContext context) {
+    // set up the button
+    Widget okButton = FlatButton(
+      child: Text("OK"),
+      onPressed: () {
+        Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
+      },
+    );
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Text(message),
+      content: Text(message),
+      actions: [
+        okButton,
+      ],
+    );
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
     );
   }
 }

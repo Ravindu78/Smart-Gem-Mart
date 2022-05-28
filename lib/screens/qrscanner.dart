@@ -4,8 +4,10 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-void main() => runApp(const MaterialApp(home: MyHome()));
+
+
 
 class MyHome extends StatelessWidget {
   const MyHome({Key? key}) : super(key: key);
@@ -50,7 +52,11 @@ class _QRViewExampleState extends State<QRViewExample> {
     }
     controller!.resumeCamera();
   }
+    late Uri _url;
 
+  void _launchUrl() async {
+    if (!await launchUrl(_url)) throw 'Could not launch $_url';
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,8 +71,21 @@ class _QRViewExampleState extends State<QRViewExample> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   if (result != null)
-                    Text(
-                        'Barcode Type: ${describeEnum(result!.format)}   Data: ${result!.code}')
+              Center(
+              child: RaisedButton(
+              onPressed: (){
+                setState(() {
+                  _url = Uri.parse('${result!.code}');
+                  print(_url);
+                });
+
+                _launchUrl();
+              },
+              child: Text('view result'),
+            ),
+          )
+                    // Text(
+                    //     'Barcode Type: ${describeEnum(result!.format)}   Data: ${result!.code}')
                   else
                     const Text('Scan a code'),
                   Row(

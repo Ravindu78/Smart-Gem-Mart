@@ -31,6 +31,13 @@ class AboutState extends State<About> {
 
 
       ),
+      body: Container(
+child: SingleChildScrollView(
+  child: Column(
+
+  )
+),
+      ),
     );
   }
 }

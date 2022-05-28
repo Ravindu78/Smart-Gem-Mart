@@ -48,6 +48,8 @@ dependencies:
   search_page: ^2.0.0+1
   payhere_mobilesdk_flutter: ^2.0.0
   pay: ^1.0.8
+  url_launcher: ^6.1.2
+  toast: ^0.2.9
   dependencies:
 
 

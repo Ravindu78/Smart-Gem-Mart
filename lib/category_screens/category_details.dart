@@ -72,7 +72,7 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                       itemBuilder: (BuildContext context, index) {
                         QueryDocumentSnapshot category =
                         snapshot.data!.docs[index];
-
+                        String docId= category.id;
                         String imgurl = category['imgUrl'];
                         String price = category['price'];
                         String descrip = category['description'];
@@ -93,6 +93,7 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                                   MaterialPageRoute(
                                     //passing the values of the gem products to the product detils page
                                       builder: (context) => ProductDetails(
+                                        docId,
                                           imgurl,
                                           price,
                                           descrip,

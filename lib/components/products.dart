@@ -61,6 +61,7 @@ class _ProductsState extends State<Products> {
                       itemBuilder: (BuildContext context, index) {
                         QueryDocumentSnapshot category =
                             snapshot.data!.docs[index];
+                        String docId= category.id;
                         String imgurl = category['imgUrl'];
                         String price = category['price'];
                         String descrip = category['description'];
@@ -105,6 +106,7 @@ class _ProductsState extends State<Products> {
                                   MaterialPageRoute(
                                       //passing the values of the gem products to the product detils page
                                       builder: (context) => ProductDetails(
+                                        docId,
                                           imgurl,
                                           price,
                                           descrip,
@@ -195,6 +197,7 @@ class _ProductsState extends State<Products> {
                   onTap: () => Navigator.of(context).push(MaterialPageRoute(
                       //passing the values of the gem products to the product detils page
                       builder: (context) => ProductDetails(
+                        'docid',
                           prod.imgUrl,
                           prod.price,
                           prod.description,

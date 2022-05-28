@@ -54,11 +54,11 @@ class _MessagesScreenState extends State<MessagesScreen> {
                             return
                               Row(
                                 children: [
-                                   Icon(Icons.person),
+                                   Icon(Icons.message),
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Container(
-                                      width:320,
+                                      width:330,
                                       height: 50,
                                       // margin: const EdgeInsets.all(2.0),
                                       padding: const EdgeInsets.all(3.0),
@@ -73,14 +73,14 @@ class _MessagesScreenState extends State<MessagesScreen> {
                                       child: Row(
                                         children: [
                                           Padding(
-                                            padding: const EdgeInsets.fromLTRB(20, 6, 0, 10),
+                                            padding: const EdgeInsets.fromLTRB(110, 6, 0, 10),
                                             child: Text("${data['name']}",style: TextStyle(fontSize: 17),),
                                           ),
-                                          Padding(
-
-                                            padding: const EdgeInsets.fromLTRB(2, 6, 0, 10),
-                                            child: Icon(Icons.message,size: 15,),
-                                          ),
+                                          // Padding(
+                                          //
+                                          //   padding: const EdgeInsets.fromLTRB(2, 6, 0, 10),
+                                          //   child: Icon(Icons.person,size: 15,),
+                                          // ),
                                         ],
 
                                       ),
@@ -90,26 +90,7 @@ class _MessagesScreenState extends State<MessagesScreen> {
                                   ),
                                 ],
                               );
-                             //  Container(
-                             //
-                             //   width: 600,
-                             //
-                             // color:Colors.pinkAccent ,
-                             //
-                             //
-                             //    child: Row(
-                             //
-                             //
-                             //      children: [
-                             //
-                             //        Padding(
-                             //
-                             //          padding: const EdgeInsets.fromLTRB(20, 10, 0, 10),
-                             //          child: Icon(Icons.person_rounded,),
-                             //        ),
-                             //        Text("    ${data['name']}", style: TextStyle(color: Colors.black ,fontWeight: FontWeight.bold, fontSize: 16.0),),
-                             //      ],
-                             //    ));
+
                           }
 
                           return Text("");

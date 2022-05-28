@@ -60,8 +60,10 @@ class _ChatScreenState extends State<ChatScreen> {
                         Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
                         return ListTile(
                           //title: Text(data['sender']),
-                          subtitle: widget.email==data['sender']?Text(data['text'],)
-                              :Text(data['text'],textAlign: TextAlign.right,)
+                          subtitle: widget.email==data['sender']?Text(data['text'],style: TextStyle(color: Colors.black,
+                               fontSize: 18.0),)
+                              :Text(data['text'],style: TextStyle(color: Colors.black,
+                               fontSize: 18.0),textAlign: TextAlign.right,)
                         );
                       }).toList(),
                     );
@@ -75,15 +77,21 @@ class _ChatScreenState extends State<ChatScreen> {
               child: Row(
             children: [
               Expanded(
-                child: TextField(
-                controller: messageController,
-                  decoration: InputDecoration(
-                    labelText: 'enter message'
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextField(
+                  controller: messageController,
+                    decoration: InputDecoration(
+                      labelText: 'Enter message'
+                    ),style: TextStyle(color: Colors.black,
+                      fontWeight: FontWeight.bold, fontSize: 20.0),
                   ),
                 ),
               ),
               ElevatedButton(
-
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.deepPurple, // Background color
+                ),
                 onPressed: (){
 
                 addMessage(messageController.text);
