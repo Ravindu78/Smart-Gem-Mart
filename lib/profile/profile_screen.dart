@@ -54,7 +54,7 @@ class _ProfileState extends State<Profile> {
         ),
         elevation: 0.2,
 
-        title: Text("About Us"),
+        title: Text("My Profile"),
 
 
       ),

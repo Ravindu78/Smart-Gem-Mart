@@ -4,16 +4,29 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:smart_gem_mart/utils/color_utils.dart';
 import 'package:smart_gem_mart/globals.dart' as globals;
 
-class ProductDetails extends StatefulWidget {
+class publishAdDetils extends StatefulWidget {
+  String docId;
+  String imgurl;
+  String price;
+  String descrip;
+  String varient;
+  String color;
+  String shape;
+  String weight;
+  String phoneNo;
+  String  email;
+  GeoPoint location;
+
+  publishAdDetils(this.docId,this.imgurl,this.price,this.descrip,this.varient,this.color,this.shape,this.weight,this.phoneNo,this.email,this.location);
 
 
   //const ProductDetails({Key? key}) : super(key: key);
 
   @override
-  _ProductDetailsState createState() => _ProductDetailsState();
+  _publishAdDetilsState createState() => _publishAdDetilsState();
 }
 
-class _ProductDetailsState extends State<ProductDetails> {
+class _publishAdDetilsState extends State<publishAdDetils> {
 
 
 
@@ -64,19 +77,19 @@ class _ProductDetailsState extends State<ProductDetails> {
             minScale: 0.1,
             maxScale: 5,
             child:Image.network(
-                imgurl),
+                widget.imgurl),
           ),
           footer: Container(
             color: Colors.white54,
             child: ListTile(
-              leading:  Text(" $varient",
+              leading:  Text(" ${  widget.varient}",
                 style: TextStyle(color: Colors.black,
                     fontWeight: FontWeight.bold, fontSize: 16.0),
               ),
               title: Row(
                 children:  [
 
-                  Expanded(child: Text("LKR $price",
+                  Expanded(child: Text("LKR ${  widget.price}",
                     style: TextStyle(
                         fontWeight: FontWeight.bold, color: Colors.red),)
                   ),
@@ -93,88 +106,82 @@ class _ProductDetailsState extends State<ProductDetails> {
 
 
       //===========the second buttons======//
+      ListTile(
+        title: Text("More",style: TextStyle(color: Colors.black ,fontWeight: FontWeight.bold, fontSize: 16.0),),
+        subtitle: Text(
+          "${  widget.descrip}",style: TextStyle(color: Colors.black , fontSize: 14.0),) ,
+      ),
+
+      Divider(),
       Row(
         children: [
+          Padding(padding: const EdgeInsets.fromLTRB(12.0, 5.0, 5.0, 5.0),
+            child: Text(
+              "Varient :", style: TextStyle(color: Colors.black ,fontWeight: FontWeight.bold, fontSize: 16.0),),),
+          Padding(padding: EdgeInsets.all(5.0),
+            child: Text("${  widget.varient}"),)
+        ],
+      ),
+      Row(
+        children: [
+          Padding(padding: const EdgeInsets.fromLTRB(12.0, 5.0, 5.0, 5.0),
+            child: Text(
+              "Color :",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold , fontSize: 14.0),),),
 
+          //=======remember to creat the product brand====
 
-          ListTile(
-            title: Text("More",style: TextStyle(color: Colors.black ,fontWeight: FontWeight.bold, fontSize: 16.0),),
-            subtitle: Text(
-              "$descrip",style: TextStyle(color: Colors.black , fontSize: 14.0),) ,
-          ),
-
-          Divider(),
-          Row(
-            children: [
-              Padding(padding: const EdgeInsets.fromLTRB(12.0, 5.0, 5.0, 5.0),
-                child: Text(
-                  "Varient :", style: TextStyle(color: Colors.black ,fontWeight: FontWeight.bold, fontSize: 16.0),),),
-              Padding(padding: EdgeInsets.all(5.0),
-                child: Text("$varient"),)
-            ],
-          ),
-          Row(
-            children: [
-              Padding(padding: const EdgeInsets.fromLTRB(12.0, 5.0, 5.0, 5.0),
-                child: Text(
-                  "Color :",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold , fontSize: 14.0),),),
-
-              //=======remember to creat the product brand====
-
-              Padding(padding: EdgeInsets.all(5.0),
-                child: Text("$color"),)
-
-            ],
-          ),
-
-          //=======remember to creat the product condition===
-
-          Row(
-            children: [
-              Padding(padding: const EdgeInsets.fromLTRB(12.0, 5.0, 5.0, 5.0),
-                child: Text(
-                  "Cutting Shape :",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold , fontSize: 14.0),),),
-              Padding(padding: EdgeInsets.all(5.0),
-                child: Text("$shape"),)
-
-            ],
-          ),
-          Row(
-            children: [
-              Padding(padding: const EdgeInsets.fromLTRB(12.0, 5.0, 5.0, 5.0),
-                child: Text(
-                  "Weight :",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold , fontSize: 14.0),),),
-              Padding(padding: EdgeInsets.all(5.0),
-                child: Text("$weight ct",style: TextStyle(color: Colors.black, fontSize: 15.0),),),
-
-            ],
-          ),
-
-          Container(
-            child:  Expanded(
-              child: Stack(children: [
-                GoogleMap(
-
-                  markers: {
-                    Marker(
-                      visible: true,
-                      markerId: const MarkerId('_kGooglePlex'),
-                      //infoWindow: InfoWindow(title: 'Google Plex'),
-                      icon: BitmapDescriptor.defaultMarker,
-                      position: LatLng(location.latitude, location.longitude),
-                    ),
-                  },
-                  mapType: MapType.normal,
-                  myLocationEnabled: true,
-                  initialCameraPosition:
-                  const CameraPosition(target: LatLng(7.8731, 80.7718), zoom: 7.8),
-                ),
-              ]),
-            ),
-          )
-
+          Padding(padding: EdgeInsets.all(5.0),
+            child: Text("${  widget.color}"),)
 
         ],
+      ),
+
+      //=======remember to creat the product condition===
+
+      Row(
+        children: [
+          Padding(padding: const EdgeInsets.fromLTRB(12.0, 5.0, 5.0, 5.0),
+            child: Text(
+              "Cutting Shape :",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold , fontSize: 14.0),),),
+          Padding(padding: EdgeInsets.all(5.0),
+            child: Text("${  widget.shape}"),)
+
+        ],
+      ),
+      Row(
+        children: [
+          Padding(padding: const EdgeInsets.fromLTRB(12.0, 5.0, 5.0, 5.0),
+            child: Text(
+              "Weight :",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold , fontSize: 14.0),),),
+          Padding(padding: EdgeInsets.all(5.0),
+            child: Text("${  widget.weight} ct",style: TextStyle(color: Colors.black, fontSize: 15.0),),),
+
+        ],
+      ),
+
+      Container(
+        child:  Expanded(
+          child: Stack(children: [
+            GoogleMap(
+
+              markers: {
+                Marker(
+                  visible: true,
+                  markerId: const MarkerId('_kGooglePlex'),
+                  //infoWindow: InfoWindow(title: 'Google Plex'),
+                  icon: BitmapDescriptor.defaultMarker,
+                  position: LatLng(  widget.location.latitude,   widget.location.longitude),
+                ),
+              },
+              mapType: MapType.normal,
+              myLocationEnabled: true,
+              initialCameraPosition:
+              const CameraPosition(target: LatLng(7.8731, 80.7718), zoom: 7.8),
+            ),
+          ]),
+        ),
+      ),
+      ],
       ),
     );
   }

@@ -190,6 +190,7 @@ class _ProductDetailsState extends State<ProductDetails> {
       'BuyerNumber': buyerNumber,
       'BuyerName': buyerName,
       'Location' :location,
+      'ImgUrl': imgurl,
     })
         .then((value) => print("Order details added"))
         .catchError((error) => print("Failed to add order details: $error"));
