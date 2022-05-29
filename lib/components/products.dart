@@ -222,13 +222,13 @@ class _ProductsState extends State<Products> {
                                   fontWeight: FontWeight.bold, fontSize: 16.0),
                             ),
                           ),
-                          Text(
-
-                            prod.price,
-                            style: TextStyle(
-                                color: Colors.purple,
-                                fontWeight: FontWeight.bold),
-                          )
+                          // Text(
+                          //
+                          //   prod.price,
+                          //   style: TextStyle(
+                          //       color: Colors.purple,
+                          //       fontWeight: FontWeight.bold),
+                          // )
                         ],
                       ),
                     ),

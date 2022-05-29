@@ -270,12 +270,18 @@ class _ProfileState extends State<Profile> {
                                 ),),
                               Container(
                                 child: myProfileUiButton(context, "Log Out", () async {
-                                  await FirebaseAuth.instance.signOut().whenComplete(() {
-                                    Navigator.popUntil(context, ModalRoute.withName('/'));
-                                  },);
+
+                                    await FirebaseAuth.instance.signOut().whenComplete(() {
+                                      Navigator.pop(context);
+                                      Navigator.pushReplacementNamed(context, '/1');
+                                    },);
+
+                                  },
+                                  // await FirebaseAuth.instance.signOut().whenComplete(() {
+                                  //   Navigator.popUntil(context, ModalRoute.withName('/'));
+                                  // },);
 
 
-                                }
                                 ),),
                             ],
 

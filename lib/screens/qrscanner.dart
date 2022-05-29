@@ -95,6 +95,9 @@ class _QRViewExampleState extends State<QRViewExample> {
                       Container(
                         margin: const EdgeInsets.all(8),
                         child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.deepPurple, // Background color
+                            ),
                             onPressed: () async {
                               await controller?.toggleFlash();
                               setState(() {});
@@ -102,13 +105,16 @@ class _QRViewExampleState extends State<QRViewExample> {
                             child: FutureBuilder(
                               future: controller?.getFlashStatus(),
                               builder: (context, snapshot) {
-                                return Text('Flash: ${snapshot.data}');
+                                return Text('Flasher');
                               },
                             )),
                       ),
                       Container(
                         margin: const EdgeInsets.all(8),
                         child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.deepPurple, // Background color
+                            ),
                             onPressed: () async {
                               await controller?.flipCamera();
                               setState(() {});
@@ -118,7 +124,7 @@ class _QRViewExampleState extends State<QRViewExample> {
                               builder: (context, snapshot) {
                                 if (snapshot.data != null) {
                                   return Text(
-                                      'Camera facing ${describeEnum(snapshot.data!)}');
+                                      'Switch Camera');
                                 } else {
                                   return const Text('loading');
                                 }
@@ -134,6 +140,9 @@ class _QRViewExampleState extends State<QRViewExample> {
                       Container(
                         margin: const EdgeInsets.all(8),
                         child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.deepPurple, // Background color
+                          ),
                           onPressed: () async {
                             await controller?.pauseCamera();
                           },
@@ -144,6 +153,9 @@ class _QRViewExampleState extends State<QRViewExample> {
                       Container(
                         margin: const EdgeInsets.all(8),
                         child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.deepPurple, // Background color
+                          ),
                           onPressed: () async {
                             await controller?.resumeCamera();
                           },

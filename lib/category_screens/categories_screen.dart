@@ -12,23 +12,6 @@ class Categories extends StatefulWidget {
 class _CategoriesState extends State<Categories> {
   @override
   Widget build(BuildContext context) {
-    // Widget image_carousel = new Container(
-    //   height: 200.0,
-    //   child: new Carousel(
-    //     boxFit: BoxFit.cover,
-    //     images: [AssetImage('images/p1.jpg'),
-    //       AssetImage('images/p2.jpg'),
-    //       AssetImage('images/p3.jpg'),
-    //     ],
-    //     autoplay: true,
-    //     animationCurve: Curves.fastOutSlowIn,
-    //     animationDuration: Duration(milliseconds: 1000),
-    //     dotSize: 5.0,
-    //     dotColor: Colors.white70,
-    //     dotBgColor: Colors.transparent,
-    //     indicatorBgPadding: 5.0,
-    //   ),
-    // );
     return Scaffold(
       body: Column(
         children: [
